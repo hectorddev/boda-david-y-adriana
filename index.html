@@ -56,7 +56,9 @@
 :root {
   color-scheme: only light;
   --papel: #f1f1ee;
-  --tul: rgba(74, 74, 62, 0.08);
+  --ramita: url("media/ramita.svg");
+  --velo: url("media/tul.svg");
+  --luz: radial-gradient(140% 55% at 50% 0%, #fbfaf7 0%, rgba(251, 250, 247, 0) 70%);
   --verde: #3f5032;
   --verde-suave: #5f6c55;
   --oro: #b6a579;
@@ -147,16 +149,17 @@ button { font: inherit; }
   position: fixed; inset: 0; z-index: 60;
   display: grid; place-items: center;
   padding: max(1rem, env(safe-area-inset-top, 0px)) var(--gutter-r) max(1rem, env(safe-area-inset-bottom, 0px)) var(--gutter-l);
-  background: var(--papel);
+  background: var(--velo) right top / min(92vw, 36rem) auto no-repeat, var(--luz), var(--papel);
   overflow: hidden; overscroll-behavior: contain; touch-action: pinch-zoom; outline: none;
 }
-.sobre::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background-image: radial-gradient(circle, var(--tul) 0.9px, transparent 1.4px);
-  background-size: 7px 7px;
-  -webkit-mask-image: radial-gradient(130% 75% at 50% 0%, #000 25%, rgba(0, 0, 0, .35) 60%, transparent 92%);
-  mask-image: radial-gradient(130% 75% at 50% 0%, #000 25%, rgba(0, 0, 0, .35) 60%, transparent 92%);
+.sobre::before, .sobre::after {
+  content: ""; position: absolute; pointer-events: none;
+  width: clamp(9rem, 38vw, 16rem); aspect-ratio: 250 / 170;
+  background: var(--ramita) center / contain no-repeat;
+  filter: drop-shadow(0 2px 2px rgba(var(--sombra), .16));
 }
+.sobre::before { top: clamp(.5rem, 4vh, 2.5rem); left: -1rem; transform: rotate(-4deg); }
+.sobre::after { bottom: clamp(.5rem, 4vh, 2.5rem); right: -1rem; transform: rotate(176deg); }
 .sobre .q1 { width: 15px; height: 15px; top: 9%; left: 10%; --t: 9s; --dx: 4px; --dy: -9px; }
 .sobre .q2 { width: 10px; height: 10px; top: 6%; right: 22%; --t: 7s; --dx: -3px; --dy: 7px; --r: -3s; }
 .sobre .q3 { width: 19px; height: 19px; top: 17%; right: 7%; --t: 10s; --dx: -5px; --dy: -7px; --r: -5s; }
@@ -218,14 +221,18 @@ button { font: inherit; }
   display: flex; flex-direction: column; align-items: center;
   min-height: 100vh; min-height: 100svh;
   padding-block: max(env(safe-area-inset-top, 0px), clamp(1.75rem, 7vh, 4rem)) max(env(safe-area-inset-bottom, 0px), .5rem);
+  padding-block: max(env(safe-area-inset-top, 0px), clamp(1.75rem, 7svh, 4rem)) max(env(safe-area-inset-bottom, 0px), .5rem);
+  background: var(--velo) right top / min(86vw, 36rem) auto no-repeat, var(--luz);
 }
-.portada::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background-image: radial-gradient(circle, var(--tul) 0.9px, transparent 1.4px);
-  background-size: 7px 7px;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, .45) 40%, transparent 80%);
-  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, .45) 40%, transparent 80%);
+/* Ramitas bordadas como el encaje del velo del video, en las dos esquinas de arriba */
+.portada::before, .portada::after {
+  content: ""; position: absolute; pointer-events: none;
+  top: clamp(.4rem, 2.5vh, 1.5rem); width: clamp(9.5rem, 41vw, 16rem); aspect-ratio: 250 / 170;
+  background: var(--ramita) center / contain no-repeat;
+  filter: drop-shadow(0 2px 2px rgba(var(--sombra), .16));
 }
+.portada::before { left: -1rem; transform: rotate(-4deg); }
+.portada::after { right: -1rem; transform: scaleX(-1) rotate(-4deg); }
 .p1 { width: 16px; height: 16px; top: 2.2rem; left: 9%; --t: 9s; --dx: 4px; --dy: -9px; --e: .15s; }
 .p2 { width: 11px; height: 11px; top: 1.3rem; right: 24%; --t: 7s; --dx: -3px; --dy: 6px; --r: -2s; --e: .4s; }
 .p3 { width: 19px; height: 19px; top: 4.6rem; right: 8%; --t: 10s; --dx: -5px; --dy: 8px; --r: -4s; --e: .6s; }
@@ -505,7 +512,10 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
   }
   .js:not(.sin-animar) .nombres .linea { padding: .15em .45em .25em; margin-block: -.15em -.25em; }
   .js:not(.sin-animar) .nombres .y { padding: .15em .3em .25em; margin-block: -.13em -.13em; }
-  .js:not(.sin-animar):not(.abierto) .portada :is(.nombres, .filete, .fecha, .marco, .bajar, .perla) { opacity: 0; }
+  .js:not(.sin-animar):not(.abierto) .portada :is(.nombres, .filete, .fecha, .marco, .bajar, .perla),
+  .js:not(.sin-animar):not(.abierto) .portada::before,
+  .js:not(.sin-animar):not(.abierto) .portada::after { opacity: 0; }
+  .abierto:not(.sin-animar) .portada::before, .abierto:not(.sin-animar) .portada::after { animation: aparecer 1.4s .1s ease both; }
   .js:not(.sin-animar) .marco::after {
     content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
     box-shadow: 0 50px 60px -30px rgba(var(--sombra), .5), 0 20px 34px -18px rgba(var(--sombra), .22);
