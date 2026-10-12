@@ -1,0 +1,1200 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Boda de David y Adriana</title>
+<meta name="description" content="Sábado 19 de diciembre de 2026, 16:00 h, en El Andaluz Park, Peribeca. Confirma tu asistencia.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_VE">
+<meta property="og:title" content="Boda de David y Adriana">
+<meta property="og:description" content="Sábado 19 de diciembre de 2026, 16:00 h, en El Andaluz Park, Peribeca.">
+<!-- WhatsApp solo muestra la imagen con la dirección completa. Si la invitación se publica en otro dominio, cambia estas dos direcciones. -->
+<meta property="og:url" content="david-y-adriana.site">
+<meta property="og:image" content="david-y-adriana.sitemedia/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fotos de David y Adriana sobre un velo de tul, con las tarjetas 19, 12 y 26">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f1f1ee">
+<meta name="color-scheme" content="only light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='21' fill='none' stroke='%23b6a579' stroke-width='6'/%3E%3C/svg%3E">
+<link rel="preload" href="fuentes/eb-garamond-n400-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/pinyon-n400.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  // Antes de pintar: activa las animaciones y decide si la invitación abre con el sobre.
+  (function () {
+    var raiz = document.documentElement;
+    var visto = false;
+    raiz.classList.add("js");
+    try { visto = sessionStorage.getItem("sobre-abierto") === "1"; } catch (e) {}
+    var reducir = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reducir && !location.hash && !visto) raiz.classList.add("con-sobre");
+    // Si el script principal no llega a arrancar, se muestra todo sin animación.
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!window.invitacionLista) {
+        raiz.classList.remove("con-sobre");
+        raiz.classList.add("sin-animar");
+        var principal = document.querySelector("main");
+        if (principal) principal.removeAttribute("inert");
+      }
+    });
+  })();
+</script>
+<style>
+@font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 400 600; font-display: swap; src: url("fuentes/eb-garamond-n400-600-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "EB Garamond"; font-style: italic; font-weight: 500; font-display: swap; src: url("fuentes/eb-garamond-i500-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* El "&" de Pinyon parece un "Et": en los textos caligráficos se toma el de la cursiva de EB Garamond */
+@font-face { font-family: "Et"; font-style: normal; font-weight: 400; font-display: block; src: url("fuentes/eb-garamond-i500-latin.woff2") format("woff2"); unicode-range: U+0026; size-adjust: 80%; }
+/* Pinyon y Mynerve van recortadas a las letras que usa la página: los nombres, "Código de vestimenta" y las cifras de la fecha */
+@font-face { font-family: "Pinyon Script"; font-style: normal; font-weight: 400; font-display: block; src: url("fuentes/pinyon-n400.woff2") format("woff2"); }
+@font-face { font-family: "Mynerve"; font-style: normal; font-weight: 400; font-display: block; src: url("fuentes/mynerve-n400.woff2") format("woff2"); }
+
+/* Layout: una sola columna centrada, como una invitación impresa; la portada y el dress code son bandas de borde a borde */
+:root {
+  color-scheme: only light;
+  --papel: #f1f1ee;
+  --tul: rgba(74, 74, 62, 0.08);
+  --verde: #3f5032;
+  --verde-suave: #5f6c55;
+  --oro: #b6a579;
+  --oro-titulo: #97824f;
+  --oro-texto: #7a6636;
+  --oro-claro: #dcc28a;
+  --vino: #6e1420;
+  --vino-hondo: #36060a;
+  --vino-boton: #7a1a24;
+  --vino-texto: #eadfcf;
+  --tarjeta: #ffffff;
+  --tinta: #272727;
+  --borde-campo: #938a6f;
+  --sombra: 40, 36, 22;
+  --f-script: "Et", "Pinyon Script", "Segoe Script", "Snell Roundhand", cursive;
+  --f-serif: "EB Garamond", Garamond, "Times New Roman", serif;
+  --f-mano: "Mynerve", "Segoe Print", "Bradley Hand", cursive;
+  --gutter: clamp(16px, 5vw, 32px);
+  --gutter-l: max(var(--gutter), env(safe-area-inset-left, 0px));
+  --gutter-r: max(var(--gutter), env(safe-area-inset-right, 0px));
+  --col: 34rem;
+  --marco: clamp(6px, 1.8vw, 10px);
+  --suave: cubic-bezier(.22, .61, .36, 1);
+  --salto: cubic-bezier(.34, 1.45, .64, 1);
+  --i-pausa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='6' y='5' width='4.2' height='14' rx='1.2'/%3E%3Crect x='13.8' y='5' width='4.2' height='14' rx='1.2'/%3E%3C/svg%3E");
+  --i-play: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5.2v13.6a1 1 0 0 0 1.53.85l10.6-6.8a1 1 0 0 0 0-1.7L9.53 4.35A1 1 0 0 0 8 5.2z'/%3E%3C/svg%3E");
+  --i-mudo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 9.2h3.6L11.5 5v14l-4.9-4.2H3z'/%3E%3Cpath d='M15.5 9.5l5 5m0-5l-5 5' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --i-sonido: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 9.2h3.6L11.5 5v14l-4.9-4.2H3z'/%3E%3Cpath d='M15 8.8a4.5 4.5 0 0 1 0 6.4M17.9 6a8.4 8.4 0 0 1 0 12' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+/* scroll-padding-bottom: lo que recibe el foco con teclado no queda tapado por la pastilla flotante */
+html { background: var(--papel); scroll-behavior: smooth; scroll-padding-bottom: 5rem; scrollbar-gutter: stable; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.solo-lector { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--verde);
+  font-family: var(--f-serif);
+  font-size: 1.1875rem;
+  line-height: 1.55;
+  font-variant-numeric: lining-nums;
+  font-kerning: normal;
+  padding-inline: var(--gutter-l) var(--gutter-r);
+  overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
+}
+img, video { max-width: 100%; }
+[hidden] { display: none !important; }
+p, li, dd { text-wrap: pretty; }
+button { font: inherit; }
+
+.banda { margin-inline: calc(-1 * var(--gutter-l)) calc(-1 * var(--gutter-r)); padding-inline: var(--gutter-l) var(--gutter-r); }
+.col { max-width: var(--col); margin-inline: auto; }
+.seccion { padding-block: clamp(3.5rem, 13vw, 6rem); text-align: center; }
+
+.filete { display: flex; align-items: center; gap: .6rem; width: min(15rem, 66%); margin: 1.1rem auto; color: var(--oro); }
+.filete::before, .filete::after { content: ""; flex: 1; height: 1px; background: currentColor; }
+.filete::before { transform-origin: 100% 50%; }
+.filete::after { transform-origin: 0 50%; }
+.filete span { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+.perla {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle at 34% 30%, #ffffff 0 16%, #f4f0e8 34%, #ddd5c6 68%, #c3b8a5 100%);
+  box-shadow: 0 2px 4px rgba(var(--sombra), .2);
+}
+
+.boton {
+  position: relative; overflow: hidden; max-width: 100%; text-align: center;
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 52px;
+  padding: .9rem 2.3rem; font: 600 1.1875rem/1 var(--f-serif); letter-spacing: .015em;
+  text-decoration: none; border-radius: 999px; cursor: pointer; touch-action: manipulation;
+  transition: transform .15s var(--suave), background-color .2s ease;
+}
+.boton svg { width: 1.15em; height: 1.15em; flex: none; }
+.boton-vino { background: var(--vino-boton); color: #e8cf96; border: 1px solid #c9a968; box-shadow: 0 12px 24px -14px rgba(110, 20, 32, .85); }
+.boton-vino:hover { background: #8a2230; }
+.boton:active { transform: scale(.97); }
+.pastilla:focus-visible, .boton:focus-visible, .bajar:focus-visible, .jugar:focus-visible, .musica:focus-visible, .flotante:focus-visible { outline: 2px solid var(--oro-texto); outline-offset: 3px; }
+
+/* Sobre de bienvenida: solo existe con JavaScript (lo activa el script del <head>) */
+.sobre { display: none; }
+.con-sobre { overflow: hidden; }
+.con-sobre .sobre {
+  position: fixed; inset: 0; z-index: 60;
+  display: grid; place-items: center;
+  padding: max(1rem, env(safe-area-inset-top, 0px)) var(--gutter-r) max(1rem, env(safe-area-inset-bottom, 0px)) var(--gutter-l);
+  background: var(--papel);
+  overflow: hidden; overscroll-behavior: contain; touch-action: pinch-zoom; outline: none;
+}
+.sobre::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, var(--tul) 0.9px, transparent 1.4px);
+  background-size: 7px 7px;
+  -webkit-mask-image: radial-gradient(130% 75% at 50% 0%, #000 25%, rgba(0, 0, 0, .35) 60%, transparent 92%);
+  mask-image: radial-gradient(130% 75% at 50% 0%, #000 25%, rgba(0, 0, 0, .35) 60%, transparent 92%);
+}
+.sobre .q1 { width: 15px; height: 15px; top: 9%; left: 10%; --t: 9s; --dx: 4px; --dy: -9px; }
+.sobre .q2 { width: 10px; height: 10px; top: 6%; right: 22%; --t: 7s; --dx: -3px; --dy: 7px; --r: -3s; }
+.sobre .q3 { width: 19px; height: 19px; top: 17%; right: 7%; --t: 10s; --dx: -5px; --dy: -7px; --r: -5s; }
+.sobre .q4 { width: 12px; height: 12px; bottom: 12%; left: 8%; --t: 8s; --dx: 4px; --dy: -6px; --r: -2s; }
+.sobre .q5 { width: 16px; height: 16px; bottom: 7%; right: 12%; --t: 11s; --dx: -4px; --dy: -8px; --r: -6s; }
+.sobre-contenido { position: relative; display: grid; justify-items: center; gap: clamp(.7rem, 2.4vh, 1.3rem); gap: clamp(.7rem, 2.4svh, 1.3rem); width: 100%; max-width: 24rem; text-align: center; }
+.sobre-aviso { margin: 0; font-weight: 600; font-size: .8125rem; letter-spacing: .24em; padding-left: .24em; text-transform: uppercase; color: var(--oro-texto); }
+.sobre-nombres { margin: -.15em 0 0; font-family: var(--f-script); font-size: clamp(2.5rem, 11.5vw, 3.4rem); line-height: 1.15; color: var(--oro-titulo); }
+.sobre-fecha { margin: 0; font-family: var(--f-mano); font-size: 1.25rem; line-height: 1; color: var(--verde-suave); }
+
+.env { position: relative; width: min(78vw, 20rem); width: min(78vw, 20rem, calc((100vh - 18.5rem) * 1.42)); width: min(78vw, 20rem, calc((100svh - 18.5rem) * 1.42)); aspect-ratio: 1.42; margin-block: .35rem; cursor: pointer; container-type: inline-size; }
+.env-fondo, .env-carta, .env-solapa, .env-bolsillo, .env-izq, .env-der, .env-abajo { position: absolute; inset: 0; }
+/* Las tres piezas del frente proyectan una sombra mínima sobre la tarjeta y el forro, como el papel doblado */
+.env-bolsillo { z-index: 3; filter: drop-shadow(0 -1px 1.5px rgba(var(--sombra), .2)); }
+.env-fondo {
+  z-index: 1; border-radius: 4px; background: #e8dfcd;
+  box-shadow: 0 26px 36px -22px rgba(var(--sombra), .6), 0 2px 6px rgba(var(--sombra), .14);
+}
+/* Forro vino del sobre, separado del borde como en un sobre de papel real */
+.env-fondo::before {
+  content: ""; position: absolute; inset: 3.5% 3.5% 35%; border-radius: 2px;
+  background: radial-gradient(circle, rgba(220, 194, 138, .32) .7px, transparent 1.1px) 0 0 / 7px 7px, linear-gradient(#86202b, #560e17);
+}
+.env-carta {
+  z-index: 2; inset: 6% 6% auto; height: 86%; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; gap: .15rem; padding-top: 7%;
+  background: #fffdf8; border-radius: 2px; box-shadow: 0 1px 4px rgba(var(--sombra), .2);
+}
+/* Medidas internas del sobre relativas a su ancho (cqi), para que todo escale junto en cualquier pantalla */
+.env-carta-nombres { font-family: var(--f-script); font-size: 1.5rem; font-size: 7.6cqi; line-height: 1.25; color: var(--oro-titulo); }
+.env-carta-fecha { font-family: var(--f-mano); font-size: 1rem; font-size: 5.2cqi; color: var(--tinta); }
+.env-solapa { z-index: 4; transform-origin: 50% 0; transform-style: preserve-3d; }
+.env-solapa::before, .env-solapa::after {
+  content: ""; position: absolute; inset: 0; border-radius: 4px 4px 0 0;
+  clip-path: polygon(0 0, 100% 0, 50% 57%);
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+}
+.env-solapa::before { background: linear-gradient(180deg, #f5efe3 0%, #e9e0ce 100%); }
+.env-solapa::after { transform: rotateY(180deg); background: radial-gradient(circle, rgba(220, 194, 138, .32) .7px, transparent 1.1px) 0 0 / 7px 7px, linear-gradient(0deg, #6e1420, #8a2230); }
+.env-izq { clip-path: polygon(0 0, 52% 53%, 0 100%); background: linear-gradient(100deg, #e9e1d0, #f2ece0 75%); }
+.env-der { clip-path: polygon(100% 0, 48% 53%, 100% 100%); background: linear-gradient(260deg, #e9e1d0, #f2ece0 75%); }
+.env-abajo { clip-path: polygon(0 100%, 50% 46%, 100% 100%); background: linear-gradient(0deg, #f8f3ea, #eee6d6); border-radius: 0 0 4px 4px; }
+.sello {
+  position: absolute; z-index: 5; left: 50%; top: 57%;
+  width: clamp(3.5rem, 18vw, 4.4rem); width: 22.5cqi; aspect-ratio: 1;
+  display: grid; place-items: center; padding-bottom: .12em;
+  transform: translate(-50%, -50%);
+  border-radius: 47% 53% 51% 49% / 52% 47% 53% 48%;
+  background: radial-gradient(circle at 36% 30%, #b2434d 0%, #8d222e 28%, #6e1420 58%, #4a0b13 100%);
+  box-shadow: inset 0 0 0 .3rem rgba(54, 6, 10, .3), inset 0 0 0 .38rem rgba(255, 220, 200, .08), inset 0 -.3rem .5rem rgba(0, 0, 0, .2), 0 3px 7px rgba(54, 6, 10, .4), 0 1px 1px rgba(54, 6, 10, .35);
+  font-family: var(--f-script); font-size: clamp(1.1rem, 5.4vw, 1.35rem); font-size: 6.9cqi; line-height: 1; letter-spacing: -.02em;
+  color: #e8d09a; text-shadow: 0 1px 0 rgba(40, 4, 8, .65), 0 -1px 0 rgba(255, 228, 190, .2);
+}
+#abrir-sobre { margin-top: .2rem; }
+
+/* Portada: ocupa la primera pantalla; el video es una foto impresa con los controles en su borde blanco */
+.portada {
+  position: relative; overflow: clip; text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+  min-height: 100vh; min-height: 100svh;
+  padding-block: max(env(safe-area-inset-top, 0px), clamp(1.75rem, 7vh, 4rem)) max(env(safe-area-inset-bottom, 0px), .5rem);
+}
+.portada::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, var(--tul) 0.9px, transparent 1.4px);
+  background-size: 7px 7px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, .45) 40%, transparent 80%);
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, .45) 40%, transparent 80%);
+}
+.p1 { width: 16px; height: 16px; top: 2.2rem; left: 9%; --t: 9s; --dx: 4px; --dy: -9px; --e: .15s; }
+.p2 { width: 11px; height: 11px; top: 1.3rem; right: 24%; --t: 7s; --dx: -3px; --dy: 6px; --r: -2s; --e: .4s; }
+.p3 { width: 19px; height: 19px; top: 4.6rem; right: 8%; --t: 10s; --dx: -5px; --dy: 8px; --r: -4s; --e: .6s; }
+.p4 { width: 9px; height: 9px; top: .8rem; left: 38%; --t: 8s; --dx: 3px; --dy: 6px; --r: -1s; }
+.p5 { width: 13px; height: 13px; top: 38%; left: 5%; --t: 11s; --dx: 4px; --dy: -7px; --r: -6s; --e: .3s; }
+.p6 { width: 10px; height: 10px; top: 30%; right: 6%; --t: 8.5s; --dx: -3px; --dy: -8px; --r: -3s; --e: .5s; }
+.portada-texto { position: relative; width: 100%; margin-top: auto; }
+.nombres {
+  font-family: var(--f-script); font-weight: 400;
+  font-size: clamp(3rem, 17vw, 6.4rem); font-size: clamp(3rem, min(17vw, 8.6vh), 6.4rem); font-size: clamp(3rem, min(17vw, 8.6svh), 6.4rem); line-height: 1.1;
+  color: var(--oro-titulo); margin: 0; outline: none;
+}
+.nombres .linea, .nombres .y { display: block; width: fit-content; margin-inline: auto; }
+.nombres .y { font-size: .58em; line-height: 1; margin-block: .02em .12em; }
+.portada .filete { margin-block: clamp(.7rem, 1.8vh, 1.1rem); margin-block: clamp(.7rem, 1.8svh, 1.1rem); }
+.fecha {
+  font-family: var(--f-serif); font-weight: 500; font-size: clamp(.875rem, 3.9vw, 1.2rem); line-height: 1.5;
+  letter-spacing: .22em; padding-left: .22em; text-transform: uppercase; color: var(--verde); margin: 0;
+}
+
+.marco {
+  position: relative; width: 100%; max-width: 40rem; margin: clamp(1.25rem, 4.2vh, 2.75rem) auto 0; margin: clamp(1.25rem, 4.2svh, 2.75rem) auto 0;
+  padding: var(--marco) var(--marco) 0; background: #fff; transform: rotate(-0.8deg);
+  box-shadow: 0 22px 40px -22px rgba(var(--sombra), .55), 0 2px 6px rgba(var(--sombra), .12);
+}
+.pantalla { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #d8d6cd; }
+.pantalla::before {
+  content: ""; position: absolute; inset: -10%; filter: blur(10px);
+  background: url("data:image/webp;base64,UklGRuAAAABXRUJQVlA4INQAAACwBQCdASogABIAPu1kqU2ppaQiMAgBMB2JYgCsL47dgZb/AAN2QdqhrrSL6dpPEykln+sc2gAA+OMNR2lb11umnqsbpSfIanPrzyeW8Dn5vEDzzswDRo9ncWIdISutK+Q7hH2hO7L01upnlO2aqk8H/VKDTQfk5WYeSRx1Dyuyla77Imj8nmv0RSgBwol0+lhzjVnHosy3EuNaYnzuz3+jOPbNz6ZbStuYmYn2nFGPYs7YT10R2Srm8kxV8LxBOrjiAfBRX5VtjJUariDsTEF0My9gAA==") center / cover;
+}
+.pantalla picture, .pantalla img, .pantalla video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.pantalla video { z-index: 1; }
+/* iOS dibuja su propio botón de reproducir cuando bloquea el autoplay (modo de bajo consumo): se usa el nuestro */
+.js .pantalla video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+/* Con JavaScript el póster queda encima y se desvanece cuando el video muestra su primer cuadro */
+.js .pantalla picture { z-index: 2; transition: opacity .8s ease, visibility 0s linear .8s; }
+.js .pantalla.reproduciendo picture { opacity: 0; visibility: hidden; }
+.jugar {
+  position: absolute; z-index: 3; inset: 0; margin: auto;
+  width: 4.5rem; height: 4.5rem; padding: 0;
+  display: grid; place-items: center;
+  color: #fff; background: rgba(54, 6, 10, .55);
+  border: 1px solid rgba(255, 255, 255, .7); border-radius: 50%;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .28); cursor: pointer; touch-action: manipulation;
+}
+.jugar::before { content: ""; width: 1.7rem; height: 1.7rem; margin-left: .2rem; background: currentColor; -webkit-mask: var(--i-play) center / contain no-repeat; mask: var(--i-play) center / contain no-repeat; }
+/* Sin JavaScript los botones no funcionarían: queda el póster y un enlace directo al video */
+html:not(.js) .pantalla video, html:not(.js) .controles { display: none; }
+html:not(.js) .marco { padding-bottom: var(--marco); }
+.ver-video {
+  position: absolute; z-index: 3; inset: 0; margin: auto; width: max-content; height: 48px;
+  display: inline-flex; align-items: center; padding: 0 1.4rem; border-radius: 999px;
+  font: 600 1.0625rem/1 var(--f-serif); color: var(--verde); text-decoration: none;
+  background: rgba(255, 255, 255, .9); border: 1px solid rgba(63, 80, 50, .25);
+}
+.jugar:active { transform: scale(.95); }
+.controles { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem .5rem; min-height: 58px; padding-block: 7px; }
+.pastilla {
+  display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; padding: 0 .95rem 0 .8rem;
+  font: 500 .9375rem/1 var(--f-serif); color: var(--verde); white-space: nowrap; cursor: pointer;
+  background: transparent; border: 1px solid rgba(63, 80, 50, .3); border-radius: 999px; touch-action: manipulation;
+  transition: transform .15s var(--suave), background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+.pastilla::before { content: ""; width: 1rem; height: 1rem; flex: none; background: currentColor; -webkit-mask: var(--icono) center / contain no-repeat; mask: var(--icono) center / contain no-repeat; }
+.pastilla:active { transform: scale(.96); }
+#pausa { --icono: var(--i-pausa); }
+#pausa.en-pausa { --icono: var(--i-play); }
+#sonido { --icono: var(--i-mudo); background: var(--vino-boton); color: #f1dfb4; border-color: #c9a968; }
+#sonido.activo { --icono: var(--i-sonido); background: transparent; color: var(--verde); border-color: rgba(63, 80, 50, .3); }
+
+.bajar {
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .55rem;
+  min-height: 44px; margin-top: auto; padding: clamp(1rem, 3vh, 2rem) 1rem .6rem; padding: clamp(1rem, 3svh, 2rem) 1rem .6rem;
+  color: var(--oro-texto); font-weight: 600; font-size: .8125rem; letter-spacing: .2em; text-indent: .2em;
+  text-transform: uppercase; text-decoration: none;
+}
+.bajar::after { content: ""; width: 9px; height: 9px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); }
+
+/* Invitación */
+.titulo {
+  font-family: var(--f-serif); font-style: italic; font-weight: 500;
+  font-size: clamp(2.5rem, 11.2vw, 3.6rem); line-height: 1.04; letter-spacing: -.01em;
+  color: var(--oro-titulo); margin: 0; text-wrap: balance;
+}
+.intro { max-width: 21rem; margin: 0 auto; font-size: 1.25rem; line-height: 1.5; text-wrap: balance; }
+.tarjetas { display: flex; justify-content: center; gap: clamp(.55rem, 3vw, 1.1rem); margin: 2.4rem auto 1.9rem; }
+.tarjeta {
+  display: grid; place-items: center; width: clamp(5.2rem, 26vw, 7.4rem); max-width: 100%; aspect-ratio: 4 / 5;
+  background: var(--tarjeta); color: var(--tinta);
+  font-family: var(--f-mano); font-size: clamp(3rem, 14.5vw, 4.4rem); line-height: 1;
+  box-shadow: 0 12px 20px -12px rgba(var(--sombra), .45), 0 1px 3px rgba(var(--sombra), .14);
+  transform: var(--reposo);
+}
+.tarjeta:nth-child(1) { --reposo: rotate(-5deg); --giro: -17deg; }
+.tarjeta:nth-child(2) { --reposo: translateY(.45rem) rotate(1.5deg); --giro: 11deg; }
+.tarjeta:nth-child(3) { --reposo: rotate(6deg); --giro: 19deg; }
+.dia { font-size: clamp(1.375rem, 6vw, 1.625rem); font-weight: 500; line-height: 1.3; margin: 0; }
+.cuenta { font-style: italic; font-weight: 500; font-size: 1.1875rem; color: var(--oro-texto); margin: .35rem 0 0; }
+.reloj { display: flex; flex-wrap: wrap; justify-content: center; row-gap: .6rem; max-width: 22rem; margin: .7rem auto 0; }
+.unidad { flex: 1 1 0; min-width: 4.1rem; display: grid; justify-items: center; gap: .1rem; padding-inline: .2rem; }
+.unidad:not([hidden]) ~ .unidad { border-left: 1px solid rgba(182, 165, 121, .55); }
+.num { display: inline-block; font-weight: 500; font-size: clamp(1.75rem, 8.6vw, 2.3rem); line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; color: var(--verde); }
+.etq { font-style: italic; font-weight: 500; font-size: .9375rem; line-height: 1.2; color: var(--oro-texto); }
+.datos { display: grid; gap: 1.3rem; max-width: 22rem; margin: 2.2rem auto; }
+.datos div { display: grid; gap: .15rem; }
+.datos dt { font-weight: 600; font-size: .8125rem; letter-spacing: .2em; padding-left: .2em; text-transform: uppercase; color: var(--oro-texto); }
+.datos dd { margin: 0; font-size: 1.375rem; line-height: 1.3; font-weight: 500; }
+.datos .dir { display: block; margin-top: .15rem; font-size: 1.0625rem; font-weight: 400; color: var(--verde-suave); }
+
+/* Dress code */
+.vestimenta {
+  position: relative; overflow: clip; color: var(--vino-texto);
+  background: radial-gradient(130% 70% at 30% 0%, #86202b 0%, var(--vino) 42%, var(--vino-hondo) 100%);
+}
+.vestimenta::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .22; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.vestimenta .col { position: relative; }
+.vestimenta h2 {
+  font-family: var(--f-script); font-weight: 400; font-size: clamp(2.9rem, 13vw, 4.4rem); line-height: 1.1;
+  color: var(--oro-claro); margin: -.2em -.3em -.3em; padding: .2em .3em .3em; text-wrap: balance;
+}
+.estilo { font-style: italic; font-weight: 500; font-size: 1.3125rem; color: var(--oro-claro); margin: .7rem 0 0; }
+.lista { list-style: none; padding: 0; margin: 2.2rem auto 0; max-width: 26rem; }
+.lista li { padding-block: 1rem; font-size: 1.125rem; line-height: 1.5; }
+.lista li + li { border-top: 1px solid rgba(220, 194, 138, .32); }
+.lista b { color: var(--oro-claro); font-weight: 600; }
+
+/* Confirmación */
+.confirmar .intro { margin-bottom: 2rem; }
+.formulario {
+  display: grid; gap: 1.3rem; max-width: 24rem; margin: 2.4rem auto 0;
+  padding: clamp(1.4rem, 6vw, 2rem); background: var(--tarjeta); text-align: left; scroll-margin-top: 4.5rem;
+  box-shadow: 0 18px 36px -24px rgba(var(--sombra), .5), 0 1px 3px rgba(var(--sombra), .12);
+}
+.campo { display: grid; gap: .45rem; }
+.campo label { font-weight: 600; font-size: .8125rem; letter-spacing: .18em; text-transform: uppercase; color: var(--oro-texto); }
+.campo input {
+  min-height: 52px; padding: .8rem 1rem; font: 400 1.1875rem/1.3 var(--f-serif); color: var(--verde);
+  background: var(--papel); border: 1px solid var(--borde-campo); border-radius: 10px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+#nombre { width: 100%; }
+.campo input:focus-visible { outline: none; border-color: var(--oro-texto); box-shadow: 0 0 0 3px rgba(151, 130, 79, .35); }
+.campo input[aria-invalid="true"] { border-color: var(--vino-boton); box-shadow: 0 0 0 3px rgba(122, 26, 36, .14); }
+.contador { display: grid; grid-template-columns: 52px minmax(0, 1fr) 52px; gap: .6rem; align-items: center; }
+.contador input {
+  width: 100%; height: 52px; text-align: center; font-size: 1.375rem; font-variant-numeric: lining-nums tabular-nums;
+  -moz-appearance: textfield; appearance: textfield;
+}
+.contador input::-webkit-outer-spin-button, .contador input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.paso {
+  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; cursor: pointer; touch-action: manipulation;
+  border: 1px solid var(--oro-titulo); background: var(--tarjeta); color: var(--oro-texto); font: 500 1.5rem/1 var(--f-serif);
+  transition: transform .15s var(--suave), background-color .2s ease;
+}
+.paso:not(:disabled):active { transform: scale(.92); background: var(--papel); }
+.paso:disabled { opacity: .4; cursor: default; }
+.paso:focus-visible { outline: 2px solid var(--oro-texto); outline-offset: 2px; }
+.ayuda { margin: 0; font-size: 1rem; color: var(--verde-suave); }
+.error { margin: 0; font-style: italic; font-weight: 500; font-size: 1.0625rem; color: var(--vino-boton); }
+.formulario .boton { width: 100%; padding-inline: 1rem; }
+.formulario .nota { margin: 0; text-align: center; font-style: italic; font-weight: 500; font-size: 1.0625rem; color: var(--verde-suave); }
+
+/* Pie */
+.pie { text-align: center; padding-block: .5rem max(3.5rem, calc(2rem + env(safe-area-inset-bottom, 0px))); }
+.firma { width: fit-content; margin: 0 auto; padding-inline: .3em; font-family: var(--f-script); font-size: clamp(2.5rem, 11.5vw, 3.5rem); line-height: 1.2; color: var(--oro-titulo); }
+.pie-fecha { margin: .2rem 0 0; font-weight: 500; font-size: .8125rem; letter-spacing: .22em; padding-left: .22em; text-transform: uppercase; color: var(--verde-suave); }
+
+/* Accesos flotantes: "Confirmar" entre la portada y la confirmación; la música cuando el video ya no se ve */
+.flotante, .musica {
+  position: fixed; z-index: 40; visibility: hidden; opacity: 0;
+  transition: opacity .3s ease, transform .45s var(--salto), visibility 0s linear .45s;
+}
+.flotante.ver, .musica.ver { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+.flotante {
+  left: 0; right: 0; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); width: max-content; max-width: calc(100vw - 2rem); margin-inline: auto;
+  display: inline-flex; align-items: center; gap: .5rem; min-height: 48px; padding: .45rem 1.35rem .45rem 1.15rem; text-align: center;
+  font: 600 1.0625rem/1.15 var(--f-serif); letter-spacing: .015em; text-decoration: none; color: #f1dfb4;
+  background: var(--vino-boton); border: 1px solid #c9a968; border-radius: 999px;
+  box-shadow: 0 0 0 3px rgba(241, 241, 238, .92), 0 14px 28px -12px rgba(54, 6, 10, .65), 0 2px 8px rgba(54, 6, 10, .3);
+  transform: translateY(150%); touch-action: manipulation;
+}
+.flotante svg { width: 1.2rem; height: 1.2rem; flex: none; }
+.flotante:active { transform: scale(.97); }
+.musica {
+  top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(10px + env(safe-area-inset-right, 0px));
+  width: 46px; height: 46px; padding: 0; display: grid; place-items: center; cursor: pointer; touch-action: manipulation;
+  color: var(--vino-boton); background: rgba(255, 255, 255, .86); border: 1px solid rgba(182, 165, 121, .7); border-radius: 50%;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  box-shadow: 0 6px 16px -6px rgba(var(--sombra), .45);
+  transform: translateY(-140%);
+}
+.musica::after { content: ""; position: absolute; inset: 0; margin: auto; width: 1.3rem; height: 1.3rem; background: currentColor; opacity: 0; -webkit-mask: var(--i-mudo) center / contain no-repeat; mask: var(--i-mudo) center / contain no-repeat; }
+.ecualizador { display: flex; align-items: flex-end; gap: 3px; height: 16px; }
+.ecualizador i { width: 3px; height: 100%; border-radius: 2px; background: currentColor; transform-origin: 50% 100%; transform: scaleY(.45); }
+.ecualizador i:nth-child(2) { transform: scaleY(.8); }
+.ecualizador i:nth-child(3) { transform: scaleY(.6); }
+.ecualizador i:nth-child(4) { transform: scaleY(.35); }
+.musica.mudo .ecualizador { opacity: 0; }
+.musica.mudo::after { opacity: 1; }
+
+/* Teléfono acostado: nombres y video lado a lado para que todo quepa en la primera pantalla */
+@media (orientation: landscape) and (max-height: 540px) {
+  .portada {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); grid-template-rows: 1fr auto;
+    column-gap: clamp(1.25rem, 4vw, 3rem); align-items: center;
+    padding-block: max(env(safe-area-inset-top, 0px), 1rem) max(env(safe-area-inset-bottom, 0px), .25rem);
+  }
+  .portada-texto { grid-area: 1 / 1; margin: 0; }
+  .marco { grid-area: 1 / 2 / 3 / 3; margin: 0; justify-self: center; width: min(100%, calc((100vh - 6.5rem) * 16 / 9 + 1rem)); width: min(100%, calc((100svh - 6.5rem) * 16 / 9 + 1rem)); }
+  .bajar { grid-area: 2 / 1; margin: 0; padding-top: .25rem; }
+  .nombres { font-size: clamp(2.2rem, min(5.2vw, 11vh), 3.4rem); font-size: clamp(2.2rem, min(5.2vw, 11svh), 3.4rem); }
+  .nombres .linea, .nombres .y { display: inline-block; }
+  .nombres .y { font-size: .8em; margin-block: 0; }
+  .sobre-contenido {
+    grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "env aviso" "env nombres" "env boton" "env fecha";
+    column-gap: clamp(1.5rem, 5vw, 3rem); row-gap: .55rem; max-width: 48rem; align-items: center;
+  }
+  .sobre-aviso { grid-area: aviso; align-self: end; }
+  .sobre-nombres { grid-area: nombres; font-size: clamp(2rem, 9vh, 2.6rem); font-size: clamp(2rem, 9svh, 2.6rem); }
+  /* Deja aire arriba: al abrirse, la solapa y la tarjeta suben por encima del sobre */
+  .env { grid-area: env; width: min(44vw, 20rem, calc((100vh - 1rem) / 2.5 * 1.42)); width: min(44vw, 20rem, calc((100svh - 1rem) / 2.5 * 1.42)); }
+  #abrir-sobre { grid-area: boton; justify-self: center; padding-inline: 1.4rem; }
+  .sobre-fecha { grid-area: fecha; align-self: start; }
+}
+@media (prefers-reduced-motion: no-preference) and (orientation: landscape) and (max-height: 540px) {
+  /* El margen de la máscara de tinta no debe separar las palabras cuando los nombres van en una línea */
+  .js:not(.sin-animar) .nombres .linea { margin-inline: -.45em; }
+  .js:not(.sin-animar) .nombres .y { margin-inline: -.3em; }
+}
+
+/* En teléfonos la foto del video se acerca a los bordes de la pantalla */
+@media (max-width: 30rem) and (orientation: portrait) {
+  .marco { width: calc(100% + var(--gutter-l) + var(--gutter-r) - 16px); max-width: none; margin-left: calc(8px - var(--gutter-l)); margin-right: calc(8px - var(--gutter-r)); }
+}
+
+/* Movimiento: todo lo que se anima vive aquí; con "reducir movimiento" la página queda quieta y completa */
+@media (prefers-reduced-motion: no-preference) {
+  .perla { animation: flotar var(--t, 8s) ease-in-out var(--r, 0s) infinite alternate; }
+  .abierto:not(.sin-animar) .portada .perla { animation: perla-entra 1.1s var(--salto) var(--e, 0s) backwards, flotar var(--t, 8s) ease-in-out var(--r, 0s) infinite alternate; }
+  .portada.fuera .perla, .portada.fuera .bajar::after { animation-play-state: paused; }
+
+  /* Sobre en espera: llega suave y flota apenas, invitando a tocarlo */
+  .con-sobre .sobre-contenido > :not(.env) { animation: subir .9s var(--suave) both; }
+  .con-sobre .sobre-nombres { animation-delay: .12s; }
+  .con-sobre #abrir-sobre { animation-delay: .5s; }
+  .con-sobre .sobre-fecha { animation-delay: .62s; }
+  .con-sobre .env { animation: llegar 1s .2s var(--suave) both, flotar-sobre 4.5s 1.2s ease-in-out infinite alternate; }
+
+  .jugar::after { content: ""; position: absolute; inset: -1px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .8); pointer-events: none; animation: pulso 2.4s ease-out infinite; }
+  .error:not([hidden]), .formulario .nota:not([hidden]) { animation: subir .4s var(--suave) both; }
+
+  /* Sobre: se rompe el sello, se abre la solapa, sube la tarjeta y el papel se desvanece */
+  .boton-vino::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: linear-gradient(105deg, transparent 38%, rgba(255, 238, 200, .38) 50%, transparent 62%);
+    transform: translateX(-130%);
+  }
+  .sobre .boton-vino::after { animation: brillo-ciclo 3.4s 1.2s ease-in-out infinite; }
+  .sobre.abriendo { animation: desvanecer .4s 1.05s ease both; pointer-events: none; }
+  .sobre.abriendo .sello { animation: sello-fuera .5s var(--suave) both; }
+  .sobre.abriendo .env-solapa { animation: solapa-abre .68s .12s cubic-bezier(.5, 0, .25, 1) both; }
+  .sobre.abriendo .env-carta { animation: carta-sube .7s .55s cubic-bezier(.2, .7, .2, 1) both; }
+  .sobre.abriendo .env { animation: llegar 1s .2s var(--suave) both, flotar-sobre 4.5s 1.2s ease-in-out infinite alternate paused, acercar .8s .95s var(--suave) both; }
+  .sobre.abriendo :is(.sobre-aviso, .sobre-nombres, .sobre-fecha, #abrir-sobre) { animation: desvanecer .35s .05s ease both; }
+
+  /* Portada: los nombres se escriben como con tinta, el filete se traza y la foto se posa */
+  .js:not(.sin-animar) .nombres :is(.linea, .y),
+  .js:not(.sin-animar) .tarjeta > span,
+  .js:not(.sin-animar) .pie .firma {
+    /* Degradado 45–55% sobre 225% de ancho: en 100% la palabra está oculta del todo y en 0 completa, sin tiempos muertos */
+    -webkit-mask: linear-gradient(90deg, #000 45%, transparent 55%) 100% 0 / 225% 100% no-repeat;
+    mask: linear-gradient(90deg, #000 45%, transparent 55%) 100% 0 / 225% 100% no-repeat;
+  }
+  .js:not(.sin-animar) .nombres .linea { padding: .15em .45em .25em; margin-block: -.15em -.25em; }
+  .js:not(.sin-animar) .nombres .y { padding: .15em .3em .25em; margin-block: -.13em -.13em; }
+  .js:not(.sin-animar):not(.abierto) .portada :is(.nombres, .filete, .fecha, .marco, .bajar, .perla) { opacity: 0; }
+  .js:not(.sin-animar) .marco::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
+    box-shadow: 0 50px 60px -30px rgba(var(--sombra), .5), 0 20px 34px -18px rgba(var(--sombra), .22);
+  }
+  .abierto:not(.sin-animar) .portada .marco::after { animation: sombra-alta 1.2s .15s ease-out both; }
+  .abierto:not(.sin-animar) .nombres .l1 { animation: tinta .95s .05s cubic-bezier(.45, .05, .35, 1) both; }
+  .abierto:not(.sin-animar) .nombres .y { animation: tinta .5s .6s cubic-bezier(.45, .05, .35, 1) both; }
+  .abierto:not(.sin-animar) .nombres .l2 { animation: tinta 1.05s .8s cubic-bezier(.45, .05, .35, 1) both; }
+  .abierto:not(.sin-animar) .portada .filete::before,
+  .abierto:not(.sin-animar) .portada .filete::after { animation: trazo .8s .95s var(--suave) both; }
+  .abierto:not(.sin-animar) .portada .filete span { animation: punto .5s .85s var(--salto) both; }
+  .abierto:not(.sin-animar) .portada .fecha { animation: subir .8s 1.1s var(--suave) both; }
+  .abierto:not(.sin-animar) .portada .marco { animation: posar 1.25s .15s cubic-bezier(.2, .7, .25, 1) both; }
+  .abierto:not(.sin-animar) .portada .bajar { animation: aparecer .8s 1.75s ease both; }
+  .abierto:not(.sin-animar) .portada .bajar::after { animation: vaiven 2.4s 2.8s ease-in-out infinite; }
+
+  /* Al bajar: cada bloque aparece una sola vez, con sus partes escalonadas */
+  .js:not(.sin-animar) [data-revelar]:not(.tarjetas) > * { transition: opacity .75s var(--suave), transform .75s var(--suave); }
+  .js:not(.sin-animar) [data-revelar]:not(.tarjetas):not(.visto) > * { opacity: 0; transform: translateY(18px); }
+  [data-revelar] > :nth-child(2) { transition-delay: .09s; }
+  [data-revelar] > :nth-child(3) { transition-delay: .18s; }
+  [data-revelar] > :nth-child(4) { transition-delay: .27s; }
+  [data-revelar] > :nth-child(5) { transition-delay: .36s; }
+  .js:not(.sin-animar) [data-revelar] .filete::before,
+  .js:not(.sin-animar) [data-revelar] .filete::after { transform: scaleX(0); transition: transform 1s var(--suave) .3s; }
+  .js:not(.sin-animar) [data-revelar].visto .filete::before,
+  .js:not(.sin-animar) [data-revelar].visto .filete::after { transform: none; }
+  .visto .boton-vino::after { animation: brillo 1.3s .9s ease-in-out both; }
+  .formulario:not([hidden]) .boton-vino::after { animation: brillo 1.3s .8s ease-in-out both; }
+
+  /* Las tarjetas 19 · 12 · 26 se reparten una a una, como en el video, y luego se escriben las cifras */
+  .js:not(.sin-animar) .tarjetas:not(.visto) .tarjeta { opacity: 0; }
+  .js:not(.sin-animar) .tarjetas.visto .tarjeta { animation: repartir .8s var(--salto) both; }
+  .js:not(.sin-animar) .tarjetas.visto .tarjeta:nth-child(2) { animation-delay: .16s; }
+  .js:not(.sin-animar) .tarjetas.visto .tarjeta:nth-child(3) { animation-delay: .32s; }
+  .js:not(.sin-animar) .tarjetas.visto .tarjeta > span { animation: tinta .6s .5s ease-out both; }
+  .js:not(.sin-animar) .tarjetas.visto .tarjeta:nth-child(2) > span { animation-delay: .66s; }
+  .js:not(.sin-animar) .tarjetas.visto .tarjeta:nth-child(3) > span { animation-delay: .82s; }
+
+  /* Dress code: el título entra desenfocado y lo cruza un destello dorado */
+  .js:not(.sin-animar) .vestimenta .encabezado h2 { transition: opacity .9s var(--suave), transform .9s var(--suave), filter .9s var(--suave); }
+  .js:not(.sin-animar) .vestimenta .encabezado:not(.visto) h2 { filter: blur(8px); }
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .js:not(.sin-animar) .vestimenta .encabezado.visto h2 {
+      background: linear-gradient(100deg, var(--oro-claro) 42%, #fff4d6 50%, var(--oro-claro) 58%) 100% 0 / 260% 100% no-repeat var(--oro-claro);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      animation: destello 1.6s 1s ease-in-out both;
+    }
+  }
+
+  .pie.visto .firma { animation: tinta 1.4s .25s cubic-bezier(.45, .05, .35, 1) both; }
+
+  .musica.sonando .ecualizador i { animation: barra .9s ease-in-out infinite alternate; }
+  .musica.sonando .ecualizador i:nth-child(2) { animation-duration: .7s; animation-delay: -.35s; }
+  .musica.sonando .ecualizador i:nth-child(3) { animation-duration: 1.05s; animation-delay: -.6s; }
+  .musica.sonando .ecualizador i:nth-child(4) { animation-duration: .8s; animation-delay: -.2s; }
+}
+/* Modo de alto contraste de Windows/Android: los íconos dibujados con máscara toman el color del sistema */
+@media (forced-colors: active) {
+  .pastilla::before, .jugar::before, .musica::after, .ecualizador i { forced-color-adjust: none; background: ButtonText; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flotante, .musica { transform: none; transition: opacity .2s ease, visibility 0s linear .2s; }
+  .flotante.ver, .musica.ver { transition-delay: 0s; }
+  .boton, .pastilla, .paso, .jugar { transition: none; }
+}
+
+/* Las perlas y el sobre flotan con "translate" para no pelear con las animaciones de entrada, que usan "transform" o "scale" */
+@keyframes flotar { to { translate: var(--dx, 3px) var(--dy, -8px); } }
+@keyframes perla-entra { from { opacity: 0; scale: .4; } 60% { opacity: 1; } }
+@keyframes llegar { from { opacity: 0; transform: translateY(26px) scale(.96); } }
+@keyframes flotar-sobre { to { translate: 0 -6px; } }
+@keyframes pulso { 0% { opacity: .8; scale: 1; } 70%, 100% { opacity: 0; scale: 1.45; } }
+@keyframes sombra-alta { from { opacity: 1; } to { opacity: 0; } }
+@keyframes tinta { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+@keyframes trazo { from { transform: scaleX(0); } }
+@keyframes punto { from { transform: scale(0); } }
+@keyframes subir { from { opacity: 0; transform: translateY(14px); } }
+@keyframes aparecer { from { opacity: 0; } }
+@keyframes desvanecer { to { opacity: 0; } }
+@keyframes posar {
+  0% { opacity: 0; transform: translateY(2.4rem) rotate(-4.5deg) scale(1.05); }
+  40% { opacity: 1; }
+  78% { transform: translateY(-2px) rotate(-0.4deg) scale(.996); }
+  100% { opacity: 1; transform: rotate(-0.8deg); }
+}
+@keyframes vaiven { 0%, 100% { transform: translateY(0) rotate(45deg); } 50% { transform: translateY(5px) rotate(45deg); } }
+@keyframes repartir { from { opacity: 0; transform: translateY(-2.6rem) rotate(var(--giro)) scale(1.12); } 55% { opacity: 1; } to { transform: var(--reposo); } }
+/* La imagen del destello es más ancha que el título: entre 100% y 0% siempre lo cubre entero y la franja clara lo cruza de izquierda a derecha */
+@keyframes destello { from { background-position: 100% 0; } to { background-position: 0 0; } }
+@keyframes brillo { to { transform: translateX(130%); } }
+@keyframes brillo-ciclo { 0% { transform: translateX(-130%); } 45%, 100% { transform: translateX(130%); } }
+@keyframes sello-fuera { 30% { transform: translate(-50%, -50%) scale(1.12); } to { opacity: 0; transform: translate(-50%, -50%) scale(.5) rotate(-18deg); } }
+@keyframes solapa-abre {
+  0%, 49% { z-index: 4; }
+  50%, 100% { z-index: 1; }
+  from { transform: perspective(60rem) rotateX(0deg); }
+  to { transform: perspective(60rem) rotateX(180deg); }
+}
+@keyframes carta-sube { to { transform: translateY(-48%); } }
+@keyframes acercar { to { transform: translateY(-6%) scale(1.06); } }
+@keyframes barra { from { transform: scaleY(.3); } to { transform: scaleY(1); } }
+</style>
+</head>
+<body>
+<div class="sobre" id="sobre" role="dialog" aria-modal="true" aria-labelledby="sobre-titulo" aria-describedby="sobre-aviso" tabindex="-1">
+  <span class="perla q1" aria-hidden="true"></span>
+  <span class="perla q2" aria-hidden="true"></span>
+  <span class="perla q3" aria-hidden="true"></span>
+  <span class="perla q4" aria-hidden="true"></span>
+  <span class="perla q5" aria-hidden="true"></span>
+  <div class="sobre-contenido">
+    <p class="sobre-aviso" id="sobre-aviso">Tienes una invitación</p>
+    <p class="sobre-nombres" id="sobre-titulo">David &amp; Adriana</p>
+    <div class="env" id="env" aria-hidden="true">
+      <span class="env-fondo"></span>
+      <span class="env-carta"><span class="env-carta-nombres">David &amp; Adriana</span><span class="env-carta-fecha">19 · 12 · 26</span></span>
+      <span class="env-solapa"></span>
+      <span class="env-bolsillo"><span class="env-izq"></span><span class="env-der"></span><span class="env-abajo"></span></span>
+      <span class="sello">D&amp;A</span>
+    </div>
+    <button class="boton boton-vino" id="abrir-sobre" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="6.5" cy="17.5" r="2.8"/><circle cx="17" cy="15.5" r="2.8"/><path d="M8.3 17.5V6.2L19.8 4v11.5h-1.6V7.6L9.9 9.2v8.3z"/></svg>
+      Abrir invitación<span class="solo-lector">, con música</span>
+    </button>
+    <p class="sobre-fecha" aria-hidden="true">19 · 12 · 26</p>
+  </div>
+</div>
+
+<main>
+  <header class="portada banda" id="inicio">
+    <span class="perla p1" aria-hidden="true"></span>
+    <span class="perla p2" aria-hidden="true"></span>
+    <span class="perla p3" aria-hidden="true"></span>
+    <span class="perla p4" aria-hidden="true"></span>
+    <span class="perla p5" aria-hidden="true"></span>
+    <span class="perla p6" aria-hidden="true"></span>
+
+    <div class="portada-texto col">
+      <h1 class="nombres" tabindex="-1"><span class="linea l1">David</span> <span class="y">&amp;</span> <span class="linea l2">Adriana</span></h1>
+      <div class="filete" aria-hidden="true"><span></span></div>
+      <p class="fecha">19 de diciembre de 2026</p>
+    </div>
+
+    <figure class="marco">
+      <div class="pantalla">
+        <picture>
+          <source type="image/avif" srcset="media/poster-640.avif 640w, media/poster-960.avif 960w" sizes="(orientation: landscape) and (max-height: 540px) 33rem, (min-width: 44rem) 39rem, calc(100vw - 2rem)">
+          <source type="image/webp" srcset="media/poster-640.webp 640w, media/poster-960.webp 960w" sizes="(orientation: landscape) and (max-height: 540px) 33rem, (min-width: 44rem) 39rem, calc(100vw - 2rem)">
+          <img src="media/poster-960.jpg" srcset="media/poster-640.jpg 640w, media/poster-960.jpg 960w" sizes="(orientation: landscape) and (max-height: 540px) 33rem, (min-width: 44rem) 39rem, calc(100vw - 2rem)" width="960" height="540" alt="" decoding="async" fetchpriority="high">
+        </picture>
+        <!-- Seis versiones del mismo video: 540p para teléfonos y 720p para pantallas grandes, en AV1, HEVC y H.264. El navegador toma la primera que puede reproducir.
+             Sin "autoplay" a propósito: el script lo arranca con play(), que empieza mucho antes en conexiones lentas. -->
+        <video id="video" muted loop playsinline preload="none" disableremoteplayback disablepictureinpicture
+          aria-label="Video de la pareja: sus fotos sobre un velo de tul y la fecha de la boda escrita a mano">
+          <source media="(max-width: 699px), (max-height: 500px)" src="media/boda-540.av1.mp4" type='video/mp4; codecs="av01.0.04M.08, mp4a.40.2"'>
+          <source media="(max-width: 699px), (max-height: 500px)" src="media/boda-540.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L90.90, mp4a.40.2"'>
+          <source media="(max-width: 699px), (max-height: 500px)" src="media/boda-540.h264.mp4" type='video/mp4; codecs="avc1.64001F, mp4a.40.2"'>
+          <source src="media/boda-720.av1.mp4" type='video/mp4; codecs="av01.0.05M.08, mp4a.40.2"'>
+          <source src="media/boda-720.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L93.90, mp4a.40.2"'>
+          <source src="media/boda-720.h264.mp4" type='video/mp4; codecs="avc1.64001F, mp4a.40.2"'>
+        </video>
+        <button class="jugar" id="jugar" type="button" aria-label="Reproducir el video con sonido" hidden></button>
+        <noscript><a class="ver-video" href="media/boda-540.h264.mp4">Ver el video</a></noscript>
+      </div>
+      <div class="controles">
+        <button class="pastilla" id="pausa" type="button">Pausar</button>
+        <button class="pastilla" id="sonido" type="button">Activar sonido</button>
+      </div>
+    </figure>
+
+    <a class="bajar" id="bajar" href="#invitacion">Ver la invitación</a>
+  </header>
+
+  <section class="seccion col" id="invitacion" aria-labelledby="t-invitacion">
+    <div class="encabezado" data-revelar>
+      <h2 class="titulo" id="t-invitacion">¡Nos casamos!</h2>
+      <div class="filete" aria-hidden="true"><span></span></div>
+      <p class="intro">Queremos que nos acompañes a celebrar nuestro gran día.</p>
+    </div>
+
+    <div class="tarjetas" role="img" aria-label="19 de diciembre de 2026" data-revelar>
+      <span class="tarjeta" aria-hidden="true"><span>19</span></span>
+      <span class="tarjeta" aria-hidden="true"><span>12</span></span>
+      <span class="tarjeta" aria-hidden="true"><span>26</span></span>
+    </div>
+
+    <div class="cuando" data-revelar>
+      <p class="dia">Sábado 19 de diciembre de 2026</p>
+      <p class="cuenta" id="cuenta">Faltan 68 días</p>
+      <div class="reloj" id="reloj" role="timer" hidden>
+        <span class="solo-lector" id="reloj-texto"></span>
+        <div class="unidad" data-u="d" data-uno="día" data-varios="días" aria-hidden="true"><span class="num">0</span><span class="etq">días</span></div>
+        <div class="unidad" data-u="h" data-uno="hora" data-varios="horas" aria-hidden="true"><span class="num">00</span><span class="etq">horas</span></div>
+        <div class="unidad" data-u="m" data-uno="minuto" data-varios="minutos" aria-hidden="true"><span class="num">00</span><span class="etq">minutos</span></div>
+        <div class="unidad" data-u="s" data-uno="segundo" data-varios="segundos" aria-hidden="true"><span class="num">00</span><span class="etq">segundos</span></div>
+      </div>
+    </div>
+
+    <div class="donde" data-revelar>
+      <dl class="datos">
+        <div><dt>Hora</dt><dd>16:00 h</dd></div>
+        <div><dt>Lugar</dt><dd>El Andaluz Park<span class="dir">Peribeca, estado Táchira</span></dd></div>
+      </dl>
+      <div class="accion">
+        <a class="boton boton-vino" id="mapa" href="https://www.google.com/maps/search/?api=1&amp;query=El%20Andaluz%20Park&amp;query_place_id=ChIJUQ1LGNFrZo4RV7uCPRaxVr0" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="vestimenta banda seccion" id="vestimenta" aria-labelledby="t-vestimenta">
+    <div class="col">
+      <div class="encabezado" data-revelar>
+        <h2 id="t-vestimenta">Código de vestimenta</h2>
+        <p class="estilo">Formal campestre</p>
+      </div>
+      <ul class="lista" data-revelar>
+        <li>Prendas frescas como lino o algodón</li>
+        <li>Colores claros, pasteles o tonos tierra</li>
+        <li><b>Ellas:</b> vestidos ligeros y calzado cómodo, como tacón ancho, cuña o sandalias planas</li>
+        <li><b>Ellos:</b> traje claro o de lino, con corbata opcional</li>
+        <li>El blanco se lo dejamos a la novia</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="seccion col confirmar" id="confirmar" aria-labelledby="t-confirmar">
+    <div class="encabezado" data-revelar>
+      <h2 class="titulo" id="t-confirmar">Confirma tu asistencia</h2>
+      <div class="filete" aria-hidden="true"><span></span></div>
+      <p class="intro">Cuéntanos tu nombre y cuántas personas vienen. Solo toma un minuto.</p>
+      <div class="accion">
+        <a class="boton boton-vino" id="abrir-formulario" href="#formulario" aria-controls="formulario" aria-expanded="false">Confirmar asistencia</a>
+      </div>
+    </div>
+
+    <form class="formulario" id="formulario" hidden novalidate>
+      <div class="campo">
+        <label for="nombre">Nombre completo</label>
+        <input id="nombre" name="nombre" type="text" autocomplete="name" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="done" required>
+        <p class="error" id="error" role="alert" hidden>Escribe tu nombre completo para enviar la confirmación.</p>
+      </div>
+      <div class="campo">
+        <label for="personas">Personas que asistirán</label>
+        <div class="contador">
+          <button type="button" class="paso" id="menos" aria-label="Una persona menos" aria-controls="personas">−</button>
+          <input id="personas" name="personas" type="number" inputmode="numeric" pattern="[0-9]*" min="1" max="10" value="1" enterkeyhint="done" aria-describedby="ayuda-personas">
+          <button type="button" class="paso" id="mas" aria-label="Una persona más" aria-controls="personas">+</button>
+        </div>
+        <p class="ayuda" id="ayuda-personas">Contándote a ti.</p>
+        <p class="solo-lector" id="conteo" aria-live="polite"></p>
+      </div>
+      <a class="boton boton-vino" id="enviar" href="#formulario" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.8 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1z"/></svg>
+        Enviar confirmación
+      </a>
+      <p class="nota" id="nota-envio" role="status" hidden></p>
+    </form>
+  </section>
+
+  <footer class="pie col" data-revelar>
+    <div class="filete" aria-hidden="true"><span></span></div>
+    <p class="firma">David &amp; Adriana</p>
+    <p class="pie-fecha">19 de diciembre de 2026</p>
+  </footer>
+</main>
+
+<a class="flotante" id="flotante" href="#confirmar" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3.5" y="6" width="17" height="12.5" rx="1.5"/><path d="M4 7l8 6.2L20 7"/></svg>
+  Confirmar asistencia
+</a>
+<button class="musica" id="musica" type="button" aria-label="Silenciar la música" hidden>
+  <span class="ecualizador" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
+
+<script>
+(() => {
+  // Número de WhatsApp que recibe las confirmaciones: formato internacional, sin "+" ni espacios (ej. 584141234567).
+  const WHATSAPP = "584120637711";
+  // Sábado 19 de diciembre de 2026 a las 16:00, hora de Venezuela (UTC−4): la cuenta regresiva llega a ese momento.
+  const BODA = Date.UTC(2026, 11, 19, 20);
+  const DIA_BODA = Date.UTC(2026, 11, 19);
+  const HORA_VENEZUELA = -4 * 3600000;
+
+  const raiz = document.documentElement;
+  const reducir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const conSobre = raiz.classList.contains("con-sobre");
+  const observar = "IntersectionObserver" in window;
+  const $ = (id) => document.getElementById(id);
+
+  // Las animaciones de la portada esperan la letra caligráfica (máximo 1,2 s) para no animar la de reemplazo.
+  const letras = Promise.race([
+    document.fonts ? Promise.all([document.fonts.load('400 1em "Pinyon Script"'), document.fonts.load('500 1em "EB Garamond"')]) : null,
+    new Promise((listo) => setTimeout(listo, 1200)),
+  ]).catch(() => {});
+
+  // Cuenta regresiva en vivo hasta las 16:00 del sábado 19 de diciembre de 2026 (hora de Venezuela).
+  const cuenta = $("cuenta");
+  const reloj = $("reloj");
+  const relojTexto = $("reloj-texto");
+  const unidades = ["d", "h", "m", "s"].map((u) => {
+    const caja = reloj.querySelector('[data-u="' + u + '"]');
+    return { caja, num: caja.querySelector(".num"), etq: caja.querySelector(".etq"), uno: caja.dataset.uno, varios: caja.dataset.varios };
+  });
+  let relojEnPantalla = false;
+  let contando = false;
+  const dos = (n) => (n < 10 ? "0" : "") + n;
+  const plural = (n, uno, varios) => n + " " + (n === 1 ? uno : varios);
+  const poner = (u, n, texto, animar) => {
+    u.etq.textContent = n === 1 ? u.uno : u.varios;
+    if (u.num.textContent === texto) return;
+    u.num.textContent = texto;
+    if (animar && relojEnPantalla && !reducir && u.num.animate) {
+      u.num.animate([{ opacity: 0, transform: "translateY(-.4em)" }, { opacity: 1, transform: "none" }], { duration: 450, easing: "cubic-bezier(.22, .61, .36, 1)" });
+    }
+  };
+  const pintarReloj = (animar) => {
+    const ahora = Date.now();
+    const ve = new Date(ahora + HORA_VENEZUELA);
+    const hoy = Date.UTC(ve.getUTCFullYear(), ve.getUTCMonth(), ve.getUTCDate());
+    const resta = BODA - ahora;
+    if (hoy > DIA_BODA) { cuenta.hidden = true; reloj.hidden = true; return false; }
+    if (resta <= 0) { cuenta.textContent = "¡Hoy es el gran día!"; reloj.hidden = true; return false; }
+    const d = Math.floor(resta / 86400000);
+    const h = Math.floor(resta / 3600000) % 24;
+    const m = Math.floor(resta / 60000) % 60;
+    const s = Math.floor(resta / 1000) % 60;
+    if (hoy === DIA_BODA) cuenta.textContent = "¡Hoy es el gran día!";
+    else cuenta.textContent = d === 1 ? "Falta" : "Faltan";
+    reloj.hidden = false;
+    unidades[0].caja.hidden = d === 0;
+    if (!contando) poner(unidades[0], d, String(d), animar);
+    poner(unidades[1], h, dos(h), animar);
+    poner(unidades[2], m, dos(m), animar);
+    poner(unidades[3], s, dos(s), animar);
+    // Para lectores de pantalla: una frase que cambia cada minuto (las cifras visibles están ocultas para ellos).
+    const texto = (hoy === DIA_BODA ? "Faltan " : "") + (d ? plural(d, "día", "días") + ", " : "") + plural(h, "hora", "horas") + " y " + plural(m, "minuto", "minutos");
+    if (relojTexto.textContent !== texto) relojTexto.textContent = texto;
+    return true;
+  };
+  const tic = () => { if (pintarReloj(true)) setTimeout(tic, 1015 - (Date.now() % 1000)); };
+  // Al aparecer, los días suben desde cero hasta el número real.
+  const contarDias = () => {
+    const u = unidades[0];
+    const fin = Number.parseInt(u.num.textContent, 10);
+    if (reducir || reloj.hidden || !Number.isFinite(fin) || fin <= 1) return;
+    contando = true;
+    const inicio = performance.now();
+    let ultimo = 0;
+    u.num.textContent = "0";
+    const paso = (t) => {
+      const p = Math.min(1, (t - inicio) / 1200);
+      if (t - ultimo > 40 || p === 1) { u.num.textContent = String(Math.round(fin * (1 - Math.pow(1 - p, 3)))); ultimo = t; }
+      if (p < 1) requestAnimationFrame(paso); else { contando = false; pintarReloj(false); }
+    };
+    requestAnimationFrame(paso);
+  };
+  let relojVisto = 0;
+  let contado = false;
+  const contarSiSeVe = () => {
+    if (contado || !portadaAbierta || relojVisto < 0.6) return;
+    contado = true;
+    contarDias();
+  };
+
+  // Video: arranca solo y en silencio; los botones lo pausan o le activan el sonido.
+  const video = $("video");
+  const pantalla = video.parentElement;
+  const marco = pantalla.parentElement;
+  const pausa = $("pausa");
+  const sonido = $("sonido");
+  const jugar = $("jugar");
+  const musica = $("musica");
+  const fuentes = Array.from(video.querySelectorAll("source"));
+  // Con "ahorro de datos" o conexión 2G el video espera a que el invitado toque reproducir.
+  const red = navigator.connection || {};
+  const ahorro = red.saveData === true || /2g$/.test(String(red.effectiveType || ""));
+  let musicaUsada = false;
+  let marcoVisible = true;
+  let pausaAuto = false;
+  let pausaOculta = false;
+
+  const marcarPausa = () => {
+    pausa.textContent = video.paused ? "Reproducir" : "Pausar";
+    pausa.classList.toggle("en-pausa", video.paused);
+    marcarMusica();
+  };
+  const marcarSonido = () => {
+    const suena = !video.muted;
+    if (suena) musicaUsada = true;
+    sonido.textContent = suena ? "Silenciar" : "Activar sonido";
+    sonido.classList.toggle("activo", suena);
+    marcarMusica();
+  };
+  const marcarMusica = () => {
+    musica.classList.toggle("sonando", !video.muted && !video.paused);
+    musica.classList.toggle("mudo", video.muted);
+    musica.setAttribute("aria-label", video.muted ? "Activar la música" : "Silenciar la música");
+    actualizarFlotantes();
+  };
+  const reproducir = () => {
+    video.preload = "auto";
+    const intento = video.play();
+    if (intento && intento.then) intento.then(() => { jugar.hidden = true; }, (e) => { if (e && e.name === "NotAllowedError") jugar.hidden = false; });
+  };
+  const ponerSonido = (activar) => {
+    video.muted = !activar;
+    if (activar) {
+      pausaAuto = false;
+      if (video.paused) reproducir();
+    } else if (!marcoVisible && !video.paused) {
+      // Silenciado desde el botón flotante con el video fuera de pantalla: no tiene sentido seguir decodificándolo.
+      pausaAuto = true;
+      video.pause();
+    }
+    marcarSonido();
+  };
+  // El póster se desvanece cuando el video ya pintó su primer cuadro, sin parpadeo.
+  const mostrarVideo = () => {
+    if (pantalla.classList.contains("reproduciendo")) return;
+    const listo = () => pantalla.classList.add("reproduciendo");
+    if (video.requestVideoFrameCallback) { video.requestVideoFrameCallback(listo); setTimeout(listo, 500); } else listo();
+  };
+
+  // Respaldo para servidores que no entregan el video por partes (Safari lo rechaza): se descarga entero y se reproduce desde memoria.
+  // Primero la versión que eligió el navegador y luego la H.264, la más compatible; tras un error de decodificación va directo a la H.264.
+  const ultima = fuentes[fuentes.length - 1];
+  const candidatas = fuentes.filter((s) => (!s.media || window.matchMedia(s.media).matches) && video.canPlayType(s.type));
+  let respaldos = [...new Set([candidatas[0], candidatas.find((s) => s.type.includes("avc1")), ultima])].filter(Boolean).map((s) => s.src);
+  let rescatando = false;
+  const usarRespaldo = async () => {
+    if (rescatando || !respaldos.length) return;
+    rescatando = true;
+    try {
+      const respuesta = await fetch(respaldos.shift());
+      if (!respuesta.ok) throw new Error(String(respuesta.status));
+      video.src = URL.createObjectURL(await respuesta.blob());
+      if (!reducir && !ahorro) reproducir();
+    } catch (e) { /* el póster queda visible */ }
+    rescatando = false;
+  };
+
+  // Sobre de bienvenida: el toque del invitado permite el sonido, así que el video vuelve al inicio con música.
+  const sobre = $("sobre");
+  const principal = document.querySelector("main");
+  const titulo = document.querySelector(".nombres");
+  // conSonido es falso con la tecla Escape: el navegador no la cuenta como gesto y no dejaría sonar la música.
+  const abrirSobre = (conSonido) => {
+    if (!raiz.classList.contains("con-sobre") || sobre.classList.contains("abriendo")) return;
+    try { sessionStorage.setItem("sobre-abierto", "1"); } catch (e) {}
+    if (navigator.vibrate) navigator.vibrate(12);
+    if (conSonido && !ahorro) {
+      try { video.currentTime = 0; } catch (e) {}
+      ponerSonido(true);
+    }
+    sobre.classList.add("abriendo");
+    setTimeout(abrirPortada, 1050);
+    setTimeout(() => {
+      raiz.classList.remove("con-sobre");
+      sobre.hidden = true;
+      principal.inert = false;
+      if ("scrollRestoration" in history) history.scrollRestoration = "auto";
+      titulo.focus({ preventScroll: true });
+      actualizarFlotantes();
+    }, 1500);
+  };
+  let portadaAbierta = false;
+  const abrirPortada = () => {
+    if (portadaAbierta) return;
+    portadaAbierta = true;
+    raiz.classList.add("abierto");
+    empezarRevelado();
+    contarSiSeVe();
+  };
+
+  // Cada bloque aparece una sola vez al llegar a él.
+  const grupos = Array.from(document.querySelectorAll("[data-revelar]"));
+  const empezarRevelado = () => {
+    if (reducir || !observar) { grupos.forEach((g) => g.classList.add("visto")); return; }
+    const io = new IntersectionObserver((entradas) => {
+      entradas.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("visto");
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+    grupos.forEach((g) => io.observe(g));
+  };
+
+  // Accesos flotantes.
+  const flotante = $("flotante");
+  let pasoPortada = false;
+  let enConfirmar = false;
+  const actualizarFlotantes = () => {
+    const libre = !raiz.classList.contains("con-sobre");
+    flotante.classList.toggle("ver", libre && pasoPortada && !enConfirmar);
+    musica.classList.toggle("ver", libre && musicaUsada && !marcoVisible);
+  };
+
+  // Confirmación: el botón muestra el formulario oculto y baja hasta él.
+  const abrir = $("abrir-formulario");
+  const form = $("formulario");
+  const nombre = $("nombre");
+  const personas = $("personas");
+  const menos = $("menos");
+  const mas = $("mas");
+  const enviar = $("enviar");
+  const error = $("error");
+  const notaEnvio = $("nota-envio");
+
+  const abrirFormulario = () => {
+    const primeraVez = form.hidden;
+    form.hidden = false;
+    abrir.setAttribute("aria-expanded", "true");
+    // Con el formulario abierto, el botón que lo abre sobra (evita dos botones vino seguidos).
+    abrir.parentElement.hidden = true;
+    if (primeraVez && !reducir && form.animate) {
+      form.animate([{ opacity: 0, transform: "translateY(18px)" }, { opacity: 1, transform: "none" }], { duration: 550, easing: "cubic-bezier(.22, .61, .36, 1)" });
+      Array.from(form.children).forEach((parte, i) => {
+        parte.animate([{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "none" }], { duration: 500, delay: 150 + i * 80, easing: "cubic-bezier(.22, .61, .36, 1)", fill: "backwards" });
+      });
+    }
+    form.scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "start" });
+    setTimeout(() => nombre.focus({ preventScroll: true }), reducir ? 0 : 500);
+  };
+  abrir.addEventListener("click", (e) => { e.preventDefault(); abrirFormulario(); });
+  flotante.addEventListener("click", (e) => { e.preventDefault(); abrirFormulario(); });
+
+  const total = () => {
+    const n = parseInt(personas.value, 10);
+    return Number.isFinite(n) ? Math.min(10, Math.max(1, n)) : 1;
+  };
+  const mensaje = () => {
+    const n = total();
+    const quien = nombre.value.trim().replace(/\s+/g, " ");
+    return "¡Hola, David y Adriana! Soy " + quien + ". Confirmo mi asistencia a su boda el sábado 19 de diciembre. " +
+      (n === 1 ? "Asistiré solo yo." : "Seremos " + n + " personas.");
+  };
+  const actualizar = () => {
+    const n = total();
+    menos.disabled = n <= 1;
+    mas.disabled = n >= 10;
+    enviar.href = (WHATSAPP && nombre.value.trim())
+      ? "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(mensaje())
+      : "#formulario";
+  };
+
+  // Pequeños gestos de respuesta: el número late al cambiar y el nombre tiembla si falta.
+  const latir = () => { if (!reducir && personas.animate) personas.animate([{ transform: "scale(1.15)" }, { transform: "none" }], { duration: 300, easing: "ease-out" }); };
+  const temblar = () => { if (!reducir && nombre.animate) nombre.animate([{ transform: "translateX(0)" }, { transform: "translateX(-6px)" }, { transform: "translateX(5px)" }, { transform: "translateX(-3px)" }, { transform: "translateX(0)" }], { duration: 450, easing: "ease-out" }); };
+  // El lector de pantalla oye el nuevo número, y si el botón se desactiva en el límite el foco pasa al otro.
+  const conteo = $("conteo");
+  const pasar = (boton, otro, teniaFoco) => {
+    const n = total();
+    conteo.textContent = n === 1 ? "1 persona" : n + " personas";
+    if (boton.disabled && teniaFoco) otro.focus();
+    latir();
+  };
+  // El aviso de nombre vacío queda ligado al campo mientras se ve.
+  const marcarError = (ver) => {
+    error.hidden = !ver;
+    if (ver) { nombre.setAttribute("aria-invalid", "true"); nombre.setAttribute("aria-describedby", "error"); }
+    else { nombre.removeAttribute("aria-invalid"); nombre.removeAttribute("aria-describedby"); }
+  };
+  menos.addEventListener("click", () => { const foco = document.activeElement === menos; personas.value = total() - 1; actualizar(); pasar(menos, mas, foco); });
+  mas.addEventListener("click", () => { const foco = document.activeElement === mas; personas.value = total() + 1; actualizar(); pasar(mas, menos, foco); });
+  personas.addEventListener("input", actualizar);
+  personas.addEventListener("change", () => { personas.value = total(); actualizar(); });
+  nombre.addEventListener("input", () => { if (nombre.value.trim()) marcarError(false); actualizar(); });
+  // "Listo" en el teclado del teléfono lleva directo al botón de enviar.
+  nombre.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" || e.isComposing) return;
+    e.preventDefault();
+    if (form.requestSubmit) form.requestSubmit(); else enviar.focus();
+  });
+  form.addEventListener("submit", (e) => { e.preventDefault(); enviar.focus(); });
+
+  enviar.addEventListener("click", (e) => {
+    if (!nombre.value.trim()) {
+      e.preventDefault();
+      marcarError(true);
+      nombre.focus();
+      temblar();
+      return;
+    }
+    if (!WHATSAPP) {
+      e.preventDefault();
+      notaEnvio.textContent = "La confirmación estará lista muy pronto.";
+      notaEnvio.hidden = false;
+      return;
+    }
+    notaEnvio.textContent = "Te llevamos a WhatsApp con tu mensaje listo. Recuerda tocar enviar para que nos llegue.";
+    notaEnvio.hidden = false;
+  });
+
+  // Puesta en marcha.
+  video.addEventListener("play", marcarPausa);
+  video.addEventListener("pause", marcarPausa);
+  video.addEventListener("volumechange", marcarSonido);
+  video.addEventListener("playing", () => { jugar.hidden = true; mostrarVideo(); });
+  // Con varias <source>, el error llega a cada una y no sube al video: se escucha en fase de captura.
+  let cambioH264 = false;
+  video.addEventListener("error", (e) => {
+    if (e.target === video && video.error && video.error.code === 3 && !cambioH264) {
+      // El teléfono no pudo decodificar este formato: se pasa a la H.264, la más compatible, sin descargarla entera.
+      cambioH264 = true;
+      const h264 = candidatas.find((s) => s.type.includes("avc1")) || ultima;
+      respaldos = [h264.src];
+      video.src = h264.src;
+      if (!reducir && !ahorro) reproducir();
+      return;
+    }
+    if (e.target === video || e.target === ultima || video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) usarRespaldo();
+  }, true);
+
+  pausa.addEventListener("click", () => {
+    if (video.paused) reproducir(); else { pausaAuto = false; video.pause(); }
+  });
+  sonido.addEventListener("click", () => ponerSonido(video.muted));
+  musica.addEventListener("click", () => ponerSonido(video.muted));
+  // El botón grande desaparece al arrancar: el foco pasa antes a "Pausar" para no perderse.
+  jugar.addEventListener("click", () => { pausa.focus({ preventScroll: true }); ponerSonido(true); });
+
+  // Arranca solo y en silencio; con movimiento reducido o ahorro de datos no descarga nada hasta que el invitado toque reproducir.
+  if (reducir || ahorro) jugar.hidden = false;
+  else reproducir();
+
+  // Música de fondo: se pausa si el invitado cambia de app (por ejemplo, a WhatsApp) y sigue al volver.
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (!video.paused && !video.muted) { pausaOculta = true; video.pause(); }
+    } else if (pausaOculta) {
+      pausaOculta = false;
+      reproducir();
+    }
+  });
+
+  // iOS solo muestra la respuesta al toque (:active) si la página escucha "touchstart".
+  document.addEventListener("touchstart", () => {}, { passive: true });
+
+  if (observar) {
+    // Las perlas y la flecha de la portada dejan de animarse cuando la portada no se ve.
+    const portada = document.querySelector(".portada");
+    new IntersectionObserver(([e]) => { portada.classList.toggle("fuera", !e.isIntersecting); }).observe(portada);
+    // El video en silencio se pausa cuando sale de la pantalla y sigue al volver; con música sigue sonando.
+    new IntersectionObserver(([e]) => {
+      marcoVisible = e.isIntersecting;
+      if (!marcoVisible && video.muted && !video.paused) { pausaAuto = true; video.pause(); }
+      else if (marcoVisible && pausaAuto) { pausaAuto = false; reproducir(); }
+      actualizarFlotantes();
+    }).observe(marco);
+    new IntersectionObserver(([e]) => {
+      pasoPortada = !e.isIntersecting && e.boundingClientRect.top < 0;
+      actualizarFlotantes();
+    }).observe($("bajar"));
+    new IntersectionObserver(([e]) => { enConfirmar = e.isIntersecting; actualizarFlotantes(); }, { rootMargin: "0px 0px -25% 0px" }).observe($("confirmar"));
+    // Los días cuentan desde cero cuando el reloj ya se ve bien (no mientras sigue bajo el borde de la pantalla).
+    new IntersectionObserver(([e]) => {
+      relojEnPantalla = e.isIntersecting;
+      relojVisto = e.intersectionRatio;
+      contarSiSeVe();
+    }, { threshold: [0, 0.6] }).observe(reloj);
+  }
+  flotante.hidden = false;
+  musica.hidden = false;
+
+  marcarPausa();
+  marcarSonido();
+  tic();
+  actualizar();
+
+  if (conSobre) {
+    principal.inert = true;
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    sobre.focus({ preventScroll: true });
+    $("abrir-sobre").addEventListener("click", () => abrirSobre(true));
+    $("env").addEventListener("click", () => abrirSobre(true));
+    // Con teclado: Enter/Espacio aunque el foco esté en el diálogo y no en el botón; Escape la abre en silencio.
+    sobre.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { e.preventDefault(); abrirSobre(false); }
+      else if (e.target === sobre && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); abrirSobre(true); }
+    });
+  } else {
+    letras.then(abrirPortada);
+  }
+
+  window.invitacionLista = true;
+})();
+</script>
+</body>
+</html>
