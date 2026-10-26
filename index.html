@@ -44,8 +44,6 @@
 </script>
 <style>
 @font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 400 600; font-display: swap; src: url("fuentes/eb-garamond-n400-600-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-/* El único adorno tipográfico: el "&" de la cursiva de EB Garamond en los nombres (archivo de 1 KB con ese solo signo) */
-@font-face { font-family: "Et"; font-style: normal; font-weight: 400 600; font-display: block; src: url("fuentes/eb-garamond-et-i500.woff2") format("woff2"); unicode-range: U+0026; size-adjust: 85%; }
 /* Mynerve va recortada a las cifras escritas a mano de las tarjetas de la fecha */
 @font-face { font-family: "Mynerve"; font-style: normal; font-weight: 400; font-display: block; src: url("fuentes/mynerve-n400.woff2") format("woff2"); }
 
@@ -71,7 +69,6 @@
   --borde-campo: #938a6f;
   --sombra: 40, 36, 22;
   /* Nombres y títulos: la misma serif clara, derecha y sin cursiva, para que todo se lea bien */
-  --f-script: "Et", "EB Garamond", Garamond, "Times New Roman", serif;
   --f-serif: "EB Garamond", Garamond, "Times New Roman", serif;
   --f-mano: "Mynerve", "Segoe Print", "Bradley Hand", cursive;
   --gutter: clamp(16px, 5vw, 32px);
@@ -165,7 +162,7 @@ button { font: inherit; }
 .sobre .q5 { width: 16px; height: 16px; bottom: 7%; right: 12%; --t: 11s; --dx: -4px; --dy: -8px; --r: -6s; }
 .sobre-contenido { position: relative; display: grid; justify-items: center; gap: clamp(.7rem, 2.4vh, 1.3rem); gap: clamp(.7rem, 2.4svh, 1.3rem); width: 100%; max-width: 24rem; text-align: center; }
 .sobre-aviso { margin: 0; font-weight: 600; font-size: .875rem; letter-spacing: .24em; padding-left: .24em; text-transform: uppercase; color: var(--oro-texto); }
-.sobre-nombres { margin: -.1em 0 0; font-family: var(--f-script); font-weight: 500; font-size: clamp(2.1rem, 9.6vw, 3rem); line-height: 1.15; color: var(--oro-titulo); }
+.sobre-nombres { margin: -.1em 0 0; font-family: var(--f-serif); font-weight: 500; font-size: clamp(2.1rem, 9.6vw, 3rem); line-height: 1.15; color: var(--oro-titulo); }
 .sobre-fecha { margin: 0; font-family: var(--f-mano); font-size: 1.25rem; line-height: 1; color: var(--verde-suave); }
 
 .env { position: relative; width: min(78vw, 20rem); width: min(78vw, 20rem, calc((100vh - 18.5rem) * 1.42)); width: min(78vw, 20rem, calc((100svh - 18.5rem) * 1.42)); aspect-ratio: 1.42; margin-block: .35rem; cursor: pointer; container-type: inline-size; }
@@ -187,7 +184,7 @@ button { font: inherit; }
   background: #fffdf8; border-radius: 2px; box-shadow: 0 1px 4px rgba(var(--sombra), .2);
 }
 /* Medidas internas del sobre relativas a su ancho (cqi), para que todo escale junto en cualquier pantalla */
-.env-carta-nombres { font-family: var(--f-script); font-weight: 500; font-size: 1.3rem; font-size: 6.6cqi; line-height: 1.25; color: var(--oro-titulo); }
+.env-carta-nombres { font-family: var(--f-serif); font-weight: 500; font-size: 1.3rem; font-size: 6.6cqi; line-height: 1.25; color: var(--oro-titulo); }
 .env-carta-fecha { font-family: var(--f-mano); font-size: 1rem; font-size: 5.2cqi; color: var(--tinta); }
 .env-solapa { z-index: 4; transform-origin: 50% 0; transform-style: preserve-3d; }
 .env-solapa::before, .env-solapa::after {
@@ -208,7 +205,7 @@ button { font: inherit; }
   border-radius: 47% 53% 51% 49% / 52% 47% 53% 48%;
   background: radial-gradient(circle at 36% 30%, #b2434d 0%, #8d222e 28%, #6e1420 58%, #4a0b13 100%);
   box-shadow: inset 0 0 0 .3rem rgba(54, 6, 10, .3), inset 0 0 0 .38rem rgba(255, 220, 200, .08), inset 0 -.3rem .5rem rgba(0, 0, 0, .2), 0 3px 7px rgba(54, 6, 10, .4), 0 1px 1px rgba(54, 6, 10, .35);
-  font-family: var(--f-script); font-weight: 600; font-size: clamp(1rem, 4.8vw, 1.2rem); font-size: 6.2cqi; line-height: 1; letter-spacing: .02em;
+  font-family: var(--f-serif); font-weight: 600; font-size: clamp(1rem, 4.8vw, 1.2rem); font-size: 6.2cqi; line-height: 1; letter-spacing: .02em;
   color: #e8d09a; text-shadow: 0 1px 0 rgba(40, 4, 8, .65), 0 -1px 0 rgba(255, 228, 190, .2);
 }
 #abrir-sobre { margin-top: .2rem; }
@@ -239,12 +236,14 @@ button { font: inherit; }
 .p6 { width: 10px; height: 10px; top: 30%; right: 6%; --t: 8.5s; --dx: -3px; --dy: -8px; --r: -3s; --e: .5s; }
 .portada-texto { position: relative; width: 100%; margin-top: auto; }
 .nombres {
-  font-family: var(--f-script); font-weight: 500;
+  font-family: var(--f-serif); font-weight: 500;
   font-size: clamp(3rem, 17vw, 6.4rem); font-size: clamp(3rem, min(17vw, 8.6vh), 6.4rem); font-size: clamp(3rem, min(17vw, 8.6svh), 6.4rem); line-height: 1.1;
   color: var(--oro-titulo); margin: 0; outline: none;
 }
 .nombres .linea, .nombres .y { display: block; width: fit-content; margin-inline: auto; }
-.nombres .y { font-size: .58em; line-height: 1; margin-block: .02em .12em; }
+/* La "y" entre los nombres, pequeña y entre dos filetes dorados */
+.nombres .y { display: flex; align-items: center; gap: .4em; font-size: .5em; font-weight: 400; line-height: 1; margin-block: .06em .14em; }
+.nombres .y::before, .nombres .y::after { content: ""; width: 1.5em; height: 1px; background: var(--oro); }
 .portada .filete { margin-block: clamp(.7rem, 1.8vh, 1.1rem); margin-block: clamp(.7rem, 1.8svh, 1.1rem); }
 .fecha {
   font-family: var(--f-serif); font-weight: 500; font-size: clamp(.95rem, 4.2vw, 1.3rem); line-height: 1.5;
@@ -352,7 +351,7 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
 }
 .vestimenta .col { position: relative; }
 .vestimenta h2 {
-  font-family: var(--f-script); font-weight: 500; font-size: clamp(2.4rem, 10.6vw, 3.5rem); line-height: 1.1;
+  font-family: var(--f-serif); font-weight: 500; font-size: clamp(2.4rem, 10.6vw, 3.5rem); line-height: 1.1;
   color: var(--oro-claro); margin: -.2em -.3em -.3em; padding: .2em .3em .3em; text-wrap: balance;
 }
 .estilo { font-weight: 600; font-size: 1rem; letter-spacing: .2em; padding-left: .2em; text-transform: uppercase; color: var(--oro-claro); margin: .8rem 0 0; }
@@ -420,7 +419,7 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
 
 /* Pie */
 .pie { text-align: center; padding-block: .5rem max(3.5rem, calc(2rem + env(safe-area-inset-bottom, 0px))); }
-.firma { width: fit-content; margin: 0 auto; padding-inline: .3em; font-family: var(--f-script); font-weight: 500; font-size: clamp(2.2rem, 10vw, 3.1rem); line-height: 1.2; color: var(--oro-titulo); }
+.firma { width: fit-content; margin: 0 auto; padding-inline: .3em; font-family: var(--f-serif); font-weight: 500; font-size: clamp(2.2rem, 10vw, 3.1rem); line-height: 1.2; color: var(--oro-titulo); }
 .pie-fecha { margin: .2rem 0 0; font-weight: 500; font-size: .875rem; letter-spacing: .22em; padding-left: .22em; text-transform: uppercase; color: var(--verde-suave); }
 
 /* Accesos flotantes: "Confirmar" entre la portada y la confirmación; la música cuando el video ya no se ve */
@@ -468,7 +467,8 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
   .bajar { grid-area: 2 / 1; margin: 0; padding-top: .25rem; }
   .nombres { font-size: clamp(2.2rem, min(5.2vw, 11vh), 3.4rem); font-size: clamp(2.2rem, min(5.2vw, 11svh), 3.4rem); }
   .nombres .linea, .nombres .y { display: inline-block; }
-  .nombres .y { font-size: .8em; margin-block: 0; }
+  .nombres .y { font-size: .75em; margin-block: 0; }
+  .nombres .y::before, .nombres .y::after { display: none; }
   .sobre-contenido {
     grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "env aviso" "env nombres" "env boton" "env fecha";
     column-gap: clamp(1.5rem, 5vw, 3rem); row-gap: .55rem; max-width: 48rem; align-items: center;
@@ -679,10 +679,10 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
   <span class="perla q5" aria-hidden="true"></span>
   <div class="sobre-contenido">
     <p class="sobre-aviso" id="sobre-aviso">Tienes una invitación</p>
-    <p class="sobre-nombres" id="sobre-titulo">David &amp; Adriana</p>
+    <p class="sobre-nombres" id="sobre-titulo">David y Adriana</p>
     <div class="env" id="env" aria-hidden="true">
       <span class="env-fondo"></span>
-      <span class="env-carta"><span class="env-carta-nombres">David &amp; Adriana</span><span class="env-carta-fecha">19 · 12 · 26</span></span>
+      <span class="env-carta"><span class="env-carta-nombres">David y Adriana</span><span class="env-carta-fecha">19 · 12 · 26</span></span>
       <span class="env-solapa"></span>
       <span class="env-bolsillo"><span class="env-izq"></span><span class="env-der"></span><span class="env-abajo"></span></span>
       <span class="sello">D&amp;A</span>
@@ -705,7 +705,7 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
     <span class="perla p6" aria-hidden="true"></span>
 
     <div class="portada-texto col">
-      <h1 class="nombres" tabindex="-1"><span class="linea l1">David</span> <span class="y">&amp;</span> <span class="linea l2">Adriana</span></h1>
+      <h1 class="nombres" tabindex="-1"><span class="linea l1">David</span> <span class="y">y</span> <span class="linea l2">Adriana</span></h1>
       <div class="filete" aria-hidden="true"><span></span></div>
       <p class="fecha">19 de diciembre de 2026</p>
     </div>
@@ -886,7 +886,7 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
 
   <footer class="pie col" data-revelar>
     <div class="filete" aria-hidden="true"><span></span></div>
-    <p class="firma">David &amp; Adriana</p>
+    <p class="firma">David y Adriana</p>
     <p class="pie-fecha">19 de diciembre de 2026</p>
   </footer>
 </main>
