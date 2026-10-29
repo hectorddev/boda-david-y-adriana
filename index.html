@@ -161,7 +161,7 @@ button { font: inherit; }
 .sobre .q4 { width: 12px; height: 12px; bottom: 12%; left: 8%; --t: 8s; --dx: 4px; --dy: -6px; --r: -2s; }
 .sobre .q5 { width: 16px; height: 16px; bottom: 7%; right: 12%; --t: 11s; --dx: -4px; --dy: -8px; --r: -6s; }
 .sobre-contenido { position: relative; display: grid; justify-items: center; gap: clamp(.7rem, 2.4vh, 1.3rem); gap: clamp(.7rem, 2.4svh, 1.3rem); width: 100%; max-width: 24rem; text-align: center; }
-.sobre-aviso { margin: 0; font-weight: 600; font-size: .875rem; letter-spacing: .24em; padding-left: .24em; text-transform: uppercase; color: var(--oro-texto); }
+.sobre-aviso { margin: 0; font-weight: 600; font-size: .875rem; letter-spacing: .24em; padding-left: .24em; text-transform: uppercase; color: var(--oro-texto); text-wrap: balance; }
 .sobre-nombres { margin: -.1em 0 0; font-family: var(--f-serif); font-weight: 500; font-size: clamp(2.1rem, 9.6vw, 3rem); line-height: 1.15; color: var(--oro-titulo); }
 .sobre-fecha { margin: 0; font-family: var(--f-mano); font-size: 1.25rem; line-height: 1; color: var(--verde-suave); }
 
@@ -383,6 +383,9 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
   box-shadow: 0 14px 26px -20px rgba(var(--sombra), .5);
 }
 .presencia-etq { display: block; margin-bottom: .3rem; font-weight: 600; font-size: .8125rem; letter-spacing: .22em; padding-left: .22em; text-transform: uppercase; color: var(--oro-texto); }
+/* Invitación con cupos: el número va escrito a mano, como las tarjetas de la fecha */
+.pase { display: block; margin-bottom: .75rem; padding-bottom: .8rem; border-bottom: 1px solid rgba(182, 165, 121, .45); font-weight: 600; font-size: 1.375rem; line-height: 1.4; }
+.pase-num { display: inline-block; margin-inline: .08em; font-family: var(--f-mano); font-weight: 400; font-size: 1.9em; line-height: 1; vertical-align: -.14em; color: var(--vino-boton); transform: rotate(-5deg); }
 .formulario {
   display: grid; gap: 1.3rem; max-width: 24rem; margin: 2.4rem auto 0;
   padding: clamp(1.4rem, 6vw, 2rem); background: var(--tarjeta); text-align: left; scroll-margin-top: 4.5rem;
@@ -853,8 +856,8 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
     <div class="encabezado" data-revelar>
       <h2 class="titulo" id="t-confirmar">Confirma tu asistencia</h2>
       <div class="filete" aria-hidden="true"><span></span></div>
-      <p class="presencia"><span class="presencia-etq">Nota</span>Si recibiste esta invitación, es porque tu presencia es muy importante para nosotros.</p>
-      <p class="intro">Cuéntanos tu nombre y cuántas personas vienen. Solo toma un minuto.</p>
+      <p class="presencia"><span class="presencia-etq" id="pase-etq">Nota</span><span class="pase" id="pase" hidden>Invitación para <span class="pase-num" id="pase-num">2</span> <span id="pase-unidad">personas</span></span>Si recibiste esta invitación, es porque tu presencia es muy importante para nosotros.</p>
+      <p class="intro" id="intro-confirmar">Cuéntanos tu nombre y cuántas personas vienen. Solo toma un minuto.</p>
       <div class="accion">
         <a class="boton boton-vino" id="abrir-formulario" href="#formulario" aria-controls="formulario" aria-expanded="false">Confirmar asistencia</a>
       </div>
@@ -866,7 +869,7 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
         <input id="nombre" name="nombre" type="text" autocomplete="name" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="done" required>
         <p class="error" id="error" role="alert" hidden>Escribe tu nombre completo para enviar la confirmación.</p>
       </div>
-      <div class="campo">
+      <div class="campo" id="campo-personas">
         <label for="personas">Personas que asistirán</label>
         <div class="contador">
           <button type="button" class="paso" id="menos" aria-label="Una persona menos" aria-controls="personas">−</button>
@@ -913,6 +916,21 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
   const conSobre = raiz.classList.contains("con-sobre");
   const observar = "IntersectionObserver" in window;
   const $ = (id) => document.getElementById(id);
+
+  // Invitación con cupos: ?i= lleva "personas|nombre" en base64url (los enlaces se crean en enlaces.html).
+  const invitado = (() => {
+    try {
+      const codigo = new URLSearchParams(location.search).get("i");
+      if (!codigo) return null;
+      const bin = atob(codigo.replace(/-/g, "+").replace(/_/g, "/"));
+      const [cupos, ...resto] = new TextDecoder("utf-8", { fatal: true }).decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))).split("|");
+      const n = Number(cupos);
+      if (!Number.isInteger(n) || n < 1 || n > 20) return null;
+      return { n, nombre: resto.join("|").replace(/\s+/g, " ").trim().slice(0, 60) };
+    } catch (e) { return null; }
+  })();
+  const enPersonas = (n) => n === 1 ? "1 persona" : n + " personas";
+  if (invitado) $("sobre-aviso").textContent = "Invitación para " + enPersonas(invitado.n);
 
   // Las animaciones de la portada esperan la letra de los nombres (máximo 1,2 s) para no animar la de reemplazo.
   const letras = Promise.race([
@@ -1152,20 +1170,38 @@ html:not(.js) .marco { padding-bottom: var(--marco); }
   abrir.addEventListener("click", (e) => { e.preventDefault(); abrirFormulario(); });
   flotante.addEventListener("click", (e) => { e.preventDefault(); abrirFormulario(); });
 
+  // Con cupos, el contador arranca en el total de la invitación y solo deja bajar.
+  const tope = invitado ? invitado.n : 10;
+  if (invitado) {
+    $("pase-etq").textContent = invitado.nombre ? "Para " + invitado.nombre : "Pase especial";
+    $("pase-num").textContent = invitado.n;
+    $("pase-unidad").textContent = invitado.n === 1 ? "persona" : "personas";
+    $("pase").hidden = false;
+    personas.max = tope;
+    personas.value = tope;
+    if (tope === 1) {
+      $("campo-personas").hidden = true;
+      $("intro-confirmar").textContent = "Cuéntanos tu nombre. Solo toma un minuto.";
+    } else {
+      $("ayuda-personas").textContent = "Contándote a ti. Tu invitación es para " + tope + " personas.";
+    }
+  }
+
   const total = () => {
     const n = parseInt(personas.value, 10);
-    return Number.isFinite(n) ? Math.min(10, Math.max(1, n)) : 1;
+    return Number.isFinite(n) ? Math.min(tope, Math.max(1, n)) : 1;
   };
   const mensaje = () => {
     const n = total();
     const quien = nombre.value.trim().replace(/\s+/g, " ");
     return "¡Hola, David y Adriana! Soy " + quien + ". Confirmo mi asistencia a su boda el sábado 19 de diciembre. " +
-      (n === 1 ? "Asistiré solo yo." : "Seremos " + n + " personas.");
+      (n === 1 ? "Asistiré solo yo." : "Seremos " + n + " personas.") +
+      (invitado ? " Invitación" + (invitado.nombre ? ": " + invitado.nombre + "," : "") + " para " + enPersonas(invitado.n) + "." : "");
   };
   const actualizar = () => {
     const n = total();
     menos.disabled = n <= 1;
-    mas.disabled = n >= 10;
+    mas.disabled = n >= tope;
     enviar.href = (WHATSAPP && nombre.value.trim())
       ? "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(mensaje())
       : "#formulario";
